@@ -48,77 +48,83 @@ def makeEntryFromRowRegular(row, labels):
     entry = {}
     
     for i in range(len(labels)):
-        if (labels[i].value[0] == "*"):
-            labels[i] = labels[i][1:]
-            entry[labels[i].value.lower().strip()] = True if row[i].value != None else False
+        label = labels[i].value.lower().strip()
+        if (label[0] == "*"):
+            label = label[1:]
+            entry[label] = True if row[i].value != None else False
         else:
-            entry[labels[i].value.lower().strip()] = row[i].value
+            entry[label] = row[i].value
     return {name: entry}
 
     
 def makeSheetDatabase(worksheet, fancy=False):
-	base = 1 if fancy else 0
+    base = 1 if fancy else 0
 
-	if fancy:
-		rowMaker = makeEntryFromRowFancy
-	else:
-		rowMaker = makeEntryFromRowRegular
+    if fancy:
+        rowMaker = makeEntryFromRowFancy
+    else:
+        rowMaker = makeEntryFromRowRegular
 
-	labels = worksheet[base]
+    labels = worksheet[base]
 
     db = {}
+
     for i in range(base + 1, len(worksheet)):
         db = {**db, **rowMaker(worksheet[i], labels)}
     
     return db
 
 def mergeListIntoDict(targetList):
-	result = {}
-	for miniDict in targetList:
-		result = {**result, miniDict}
+    result = {}
+    for miniDict in targetList:
+        result = {**result, **miniDict}
 
-	return result
+    return result
 
 def main():
-	workbook = openpyxl.load_workbook("STP Global Resources Working Sheet - no tag listings.xlsx")
-	# sheetnames of workbook at first:
-	# ['Glossary', 'Non-Immersive Intern & fellow.', 'Details & Rotations', 'Fellowships', 
-	# 'Internships', 'Pairing Schemes', 'Course Syllabi', 'Degree Programs', 
-	# 'Meetings & Conferences', 'Organizations', 'Professional Networks', 'Publications', 
-	# 'Toolkits & Other Resources', 'Trainings & Workshops', 'University-Based Policy Groups']
+    workbook = openpyxl.load_workbook("STP Global Resources Working Sheet - no tag listings.xlsx")
+    # sheetnames of workbook at first:
+    # ['Glossary', 'Non-Immersive Intern & fellow.', 'Details & Rotations', 'Fellowships', 
+    # 'Internships', 'Pairing Schemes', 'Course Syllabi', 'Degree Programs', 
+    # 'Meetings & Conferences', 'Organizations', 'Professional Networks', 'Publications', 
+    # 'Toolkits & Other Resources', 'Trainings & Workshops', 'University-Based Policy Groups']
 
-	# fancy
-	fancy = [0, 0, 0, 0, 0]
-	fancy[0] = {"remote": workbook['Non-Immersive Intern & fellow.']['A1':'BH42']}
-	fancy[1] = {"rotations" : workbook['Details & Rotations']['A1':'BH16']}
-	fancy[2] = {"fellowships" : workbook['Fellowships']['A1':'BH120']}
-	fancy[3] = {"internships" : workbook['Internships']['A1':'BH52']}
-	fancy[4] = {"pairing" : workbook['Pairing Schemes']['A1':'BH11']}
+    # fancy
+    fancy = [0, 0, 0, 0, 0]
+    fancy[0] = {"remote": workbook['Non-Immersive Intern & fellow.']['A1':'BH42']}
+    fancy[1] = {"rotations" : workbook['Details & Rotations']['A1':'BH16']}
+    fancy[2] = {"fellowships" : workbook['Fellowships']['A1':'BH120']}
+    fancy[3] = {"internships" : workbook['Internships']['A1':'BH52']}
+    fancy[4] = {"pairing" : workbook['Pairing Schemes']['A1':'BH11']}
 
-	# regular
-	regular = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    # regular
+    regular = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-	regular[0] = {"regular" : workbook['Course Syllabi']['A1':'D13']}
-	regular[1] = {"degree" : workbook['Degree Programs']['A1':'F17']}
-	regular[2] = {"meetings" : workbook['Meetings & Conferences']['A1':'G16']}
-	regular[3] = {"organizations" : workbook['Organizations']['A1':'O113']}
-	regular[4] = {"professional" : workbook['Professional Networks']['A1':'F27']}
-	regular[5] = {"publications" : workbook['Publications']['A1':'P211']}
-	regular[6] = {"toolkits" : workbook['Toolkits & Other Resources']['A1':'L9']}
-	regular[7] = {"workshops" : workbook['Trainings & Workshops']['A1':'G26']}
-	regular[8] = {"university" : workbook['University-Based Policy Groups']['A1':'F10']}
+    regular[0] = {"syllabi" : workbook['Course Syllabi']['A1':'D13']}
+    regular[1] = {"degree" : workbook['Degree Programs']['A1':'F17']}
+    regular[2] = {"meetings" : workbook['Meetings & Conferences']['A1':'G16']}
+    regular[3] = {"organizations" : workbook['Organizations']['A1':'O113']}
+    regular[4] = {"professional" : workbook['Professional Networks']['A1':'F27']}
+    regular[5] = {"publications" : workbook['Publications']['A1':'P211']}
+    regular[6] = {"toolkits" : workbook['Toolkits & Other Resources']['A1':'L9']}
+    regular[7] = {"workshops" : workbook['Trainings & Workshops']['A1':'G26']}
+    regular[8] = {"university" : workbook['University-Based Policy Groups']['A1':'F10']}
 
-	for item in fancy:
-		item[item.keys[0]] = makeSheetDatabase(item.values[0], fancy=True)
+    for item in fancy:
+        for key in item:
+            item[key] = makeSheetDatabase(item[key], fancy=True)
 
-	for item in regular:
-		item[item.keys[0]] = makeSheetDatabase(item.values[0], fancy=False)
+    for item in regular:
+        for key in item:
+            item[key] = makeSheetDatabase(item[key], fancy=False)
 
 
-	result = mergeListIntoDict(fancy + regular)
+    resources = mergeListIntoDict(fancy + regular)
 
-	print(result)
 
+    target_file = open("resources-0.1.json", "w")
+    target_file.write(json.dumps(resources))
+    target_file.close()
 
 
 if __name__ == '__main__':
