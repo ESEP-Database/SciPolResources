@@ -1,7 +1,17 @@
 import openpyxl
 import json
 
+# This script generates a json-valid data object from a valid spreadsheet. 
+# This script is highly specialized and will require updates as the spreadsheet
+#   is changed. Efforts will be made in the future to make this script more 
+#   generalizable, but as it is not a long term solution, it is not intended to
+#   be supported in the long term.
+# Points where key changes can be made will be pointed out in comments.
+
+
 def makeEntryFromRowFancy(row, labels):
+    """ Takes a *fancy* style row element, with labels given, and makes it into a valid
+        Python dictionary. """
     name = row[0].value.strip()
     if name[-1] == '*':
         name = name[:-1].strip()
@@ -43,6 +53,9 @@ def makeEntryFromRowFancy(row, labels):
     return {name: vals}
 
 def makeEntryFromRowRegular(row, labels):
+    """ Takes a *simple* style row element, with labels given, and makes it into a valid
+    Python dictionary. """
+
     name = row[0].value.strip()
 
     entry = {}
@@ -58,6 +71,10 @@ def makeEntryFromRowRegular(row, labels):
 
     
 def makeSheetDatabase(worksheet, fancy=False):
+    """ Given a worksheet (a 2 dimensional Python array of openpyxl.Cell 
+        objects), this method generates a complete Python dictionary 
+        representing the spreadsheet. """
+
     base = 1 if fancy else 0
 
     if fancy:
@@ -75,13 +92,31 @@ def makeSheetDatabase(worksheet, fancy=False):
     return db
 
 def mergeListIntoDict(targetList):
+    """ Merges a list of dictionaries into a single dictionary. Utility."""
     result = {}
     for miniDict in targetList:
         result = {**result, **miniDict}
 
     return result
 
+def validateData(dictionary):
+    """ Ensures that the keys in the dictionary are valid characters for
+        Firebase's JSON database. """
+    keys = dictionary.keys()
+    invalid_chars = ['$', '#', '[', ']', '/', '.']
+    for key in keys:
+        for char in invalid_chars:
+            if char in key:
+                print("INVALID CHARACTER FOUND")
+                print(key)
+                quit()
+        if type(dictionary[key]) == dict:
+            validateData(dictionary[key])
+
+
 def main():
+    
+    # Change this line to load from another spreadsheet. Use the full spreadsheet name and extension.
     workbook = openpyxl.load_workbook("STP Global Resources Working Sheet - no tag listings.xlsx")
     # sheetnames of workbook at first:
     # ['Glossary', 'Non-Immersive Intern & fellow.', 'Details & Rotations', 'Fellowships', 
@@ -91,6 +126,7 @@ def main():
 
     # fancy
     fancy = [0, 0, 0, 0, 0]
+
     fancy[0] = {"remote": workbook['Non-Immersive Intern & fellow.']['A1':'BH42']}
     fancy[1] = {"rotations" : workbook['Details & Rotations']['A1':'BH16']}
     fancy[2] = {"fellowships" : workbook['Fellowships']['A1':'BH120']}
@@ -121,10 +157,13 @@ def main():
 
     resources = mergeListIntoDict(fancy + regular)
 
+    validateData(resources)
 
-    target_file = open("resources-0.1.json", "w")
+    # Change the name "resources.json" to dump the file to another location.
+    target_file = open("resources.json", "w")
     target_file.write(json.dumps(resources))
     target_file.close()
+
 
 
 if __name__ == '__main__':
