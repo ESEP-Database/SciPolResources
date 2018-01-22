@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="dest/css/chosen.css">
 <link rel="stylesheet" type="text/css" href="dest/css/main.css">
-
+<div id="header">
 I want to 
 
 <select id="mode"> 
@@ -23,16 +23,40 @@ a
     <option>Remote</option>
 </select>
 
+
+
 <div> </div>
 
 <button id="tool-loader"> Go! </button>
+</div>
 
-<lb>
+<div id= "form-area">
 
-<div id= "textfields"> </div>
+    <br>
+    
+    <div id= "select-dropdown"> </div>
 
+    <br>
 
+    <div id= "textfields"> </div>
 
+</div>
+
+<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDut6scum5mAR2Ftdbj3qArHEnQAI4NaQ8",
+    authDomain: "esep-database.firebaseapp.com",
+    databaseURL: "https://esep-database.firebaseio.com",
+    projectId: "esep-database",
+    storageBucket: "esep-database.appspot.com",
+    messagingSenderId: "195602369629"
+  };
+  firebase.initializeApp(config);
+</script>
 
 <!-- See if we can use JQuery locally instead of getting it from the internet -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
