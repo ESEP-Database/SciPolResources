@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="dest/css/main.css">
+<head>
+	<title>ESEP Resources Database</title>
+</head>
+<body>
+
+<div>
+	I want to view:
+	<select class="main">
+		<option></option>
+		<option value="syllabi">Course Syllabi and Teaching Resources</option>
+		<option value="degree">Degree Programs</option>
+		<option value="steo">Short Term Engagement Opportunities</option>
+		<option value="fellowships">Fellowships</option>
+		<option value="internships">Internships</option>
+		<option value="meetings">Meetings and Conferences</option>
+		<option value="training">Training Opportunities</option>
+		<option value="networks">Professional Networks</option>
+		<option value="toolkits">Toolkits and Outreach Resources</option>
+		<option value="ubspg">University-based Student Policy Groups</option>
+		<option value="other">Other Tools and Resources</option>
+	</select>
+</div>
+
+<div class="filters">
+	
+</div>
+
+<div class="data">
+
+</div>
+
+</body>
+
+<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDsL6yU3lDC0QaLcdbyvM0wOpDECjpFrrw",
+    authDomain: "esep-testing.firebaseapp.com",
+    databaseURL: "https://esep-testing.firebaseio.com",
+    projectId: "esep-testing",
+    storageBucket: "esep-testing.appspot.com",
+    messagingSenderId: "455456557012"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<!-- See if we can use JQuery locally instead of getting it from the internet -->
+<script type="text/javascript" src="Plugins/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="dest/js/filteroptions.js"></script>
+<script type="text/javascript" src="dest/js/main.js"></script>
+
+
+
+
+</html>
+
+
