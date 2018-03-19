@@ -94,7 +94,8 @@ function filterData(dataset) {
 		// Select
 		if (typeof filters[label] === "string") {
 			for (var element in dataset) {
-				if (dataset[element][label] !== filters[label]) {
+				// Contains the substring in the filter
+				if (dataset[element][label].indexOf(filters[label]) === -1) {
 					delete dataset[element];
 				}
 			}
