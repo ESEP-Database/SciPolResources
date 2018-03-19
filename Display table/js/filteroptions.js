@@ -235,6 +235,7 @@ function filters_syllabi(){
 function filters_degree(){
 	$(".filters").append(academicLevelString + countrySelectString);
 }
+
 function filters_details(){
 	$(".filters").append(compensatedSelectString+ countrySelectString);
 
