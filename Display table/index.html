@@ -5,27 +5,27 @@
 	<title>ESEP Resources Database</title>
 </head>
 <body>
-
-<div>
-	I want to view:
-	<select class="main">
-		<option></option>
-		<option value="syllabi">Course Syllabi and Teaching Resources</option>
-		<option value="degree">Degree Programs</option>
-		<option value="steo">Short Term Engagement Opportunities</option>
-		<option value="fellowships">Fellowships</option>
-		<option value="internships">Internships</option>
-		<option value="meetings">Meetings and Conferences</option>
-		<option value="training">Training Opportunities</option>
-		<option value="networks">Professional Networks</option>
-		<option value="toolkits">Toolkits and Outreach Resources</option>
-		<option value="ubspg">University-based Student Policy Groups</option>
-		<option value="other">Other Tools and Resources</option>
-	</select>
-</div>
-
-<div class="filters">
+<div class="inputs">
+	<div class="selection">
+		I want to view:
+		<select class="main">
+			<option></option>
+			<option value="syllabi">Course Syllabi and Teaching Resources</option>
+			<option value="degree">Degree Programs</option>
+			<option value="steo">Short Term Engagement Opportunities</option>
+			<option value="fellowships">Fellowships</option>
+			<option value="internships">Internships</option>
+			<option value="meetings">Meetings and Conferences</option>
+			<option value="training">Training Opportunities</option>
+			<option value="networks">Professional Networks</option>
+			<option value="toolkits">Toolkits and Outreach Resources</option>
+			<option value="ubspg">University-based Student Policy Groups</option>
+			<option value="other">Other Tools and Resources</option>
+		</select>
+	</div>
+	<div class="filters">
 	
+	</div>
 </div>
 
 <div class="data">
@@ -50,7 +50,6 @@
   firebase.initializeApp(config);
 </script>
 
-<!-- See if we can use JQuery locally instead of getting it from the internet -->
 <script type="text/javascript" src="Plugins/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="dest/js/filteroptions.js"></script>
 <script type="text/javascript" src="dest/js/main.js"></script>

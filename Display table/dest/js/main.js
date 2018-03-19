@@ -7,7 +7,6 @@ firebase.database().ref().once('value').then(function(snapshot) {
 	data = preprocess(data);
 });
 
-
 $(document).ready(function() {
 	$("select.main").on("change", function() {
 		$(".filters").empty();
@@ -50,11 +49,16 @@ function preprocess(data) {
 		optional arg, datatype can be used to make the toStrings more unique.
 */
 function toString(element, datatype) {
-	str = "<b>"
-	str = str + element["Name"] + "</b> <br>"
-	str += element["About"]
-	str += "<br> <hr>"
-	return str
+	var website = element["Website"];
+	var str = "<div class=table-element> <a ref =" + website + "><span><b>";
+	str = str + element["Name"] + "</b> </span> <br>";
+	var info = element["About"];
+	if (typeof info == "undefined") {
+		var info = website;
+	}
+	str += info
+	str +=  "</a> </div> <br> <hr>";
+	return str;
 }
 
 function displayData(dataset) {
