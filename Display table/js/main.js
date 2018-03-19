@@ -86,9 +86,6 @@ function filterData(dataset) {
 			filters[data_class] = $(this).children("input[type=checkbox]").is(":checked");
 		}
 	});
-	console.log(filters);
-
-	console.log(dataset);
 
 	for (var label in filters) {
 		// Select
