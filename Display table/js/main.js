@@ -13,6 +13,7 @@ $(document).ready(function() {
 		$(".data").empty();
 		if(this.value){
 			var filters_name = "filters_" + this.value;
+			console.log(filters_name);
 			window[filters_name]();
 			displayData(data[this.value]);
 		}
