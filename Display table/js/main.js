@@ -3,120 +3,126 @@ var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database();
 var data;
 firebase.database().ref().once('value').then(function(snapshot) {
-	data = snapshot.val()
-	data = preprocess(data);
+    data = snapshot.val()
+    data = preprocess(data);
 });
 
 $(document).ready(function() {
-	$("select.main").on("change", function() {
-		$(".filters").empty();
-		$(".data").empty();
-		if(this.value){
-			var filters_name = "filters_" + this.value;
-			console.log(filters_name);
-			window[filters_name]();
-			displayData(data[this.value]);
-		}
-		datatype = this.value;
-		$(".filters div").each(function() {
-			$(this).children(":input").change(function() {
-				dataset = Object.assign(true, {}, data[datatype]);
-				dataset = filterData(dataset);
-				$(".data").empty();
-				displayData(dataset);
-			});
-		});
-		
-	});
+    $("select.main").on("change", function() {
+        $(".filters").empty();
+        $(".data").empty();
+        if(this.value){
+            var filters_name = "filters_" + this.value;
+            // console.log(filters_name);
+            window[filters_name]();
+            displayData(data[this.value]);
+        }
+        datatype = this.value;
+        $(".filters div").each(function() {
+            $(this).children(":input").change(function() {
+                dataset = Object.assign(true, {}, data[datatype]);
+                dataset = filterData(dataset);
+                $(".data").empty();
+                displayData(dataset);
+            });
+        });
+        
+    });
 });
 
-/*	This function's primary role is to append toString elements to each item in the dataset
-		so that the results can be quickly displayed in the search table
+/*    This function's primary role is to append toString elements to each item in the dataset
+        so that the results can be quickly displayed in the search table
 */
 function preprocess(data) {
-	// syllabi, degree programs, etc
-	str = '';
-	for (var datatype in data) {
-		// Individual entries
-		dataset = data[datatype];
-		for (var element in dataset) {
-			dataset[element]["toString"] = toString(dataset[element], datatype);
-		}
-	}
-	return data
+    // syllabi, degree programs, etc
+    str = '';
+    for (var datatype in data) {
+        // Individual entries
+        dataset = data[datatype];
+        for (var element in dataset) {
+            dataset[element]["toString"] = toString(dataset[element], datatype);
+        }
+    }
+    return data
 }
 
-/*	Given an element, give a short string that characterizes it in the search table.
-		optional arg, datatype can be used to make the toStrings more unique.
+/*    Given an element, give a short string that characterizes it in the search table.
+        optional arg, datatype can be used to make the toStrings more unique.
 */
 function toString(element, datatype) {
-	var website = element["Website"];
-	var str = "<div class=table-element> <a ref =" + website + "><span><b>";
-	str = str + element["Name"] + "</b> </span> <br>";
-	var info = element["About"];
-	if (typeof info == "undefined") {
-		var info = website;
-	}
-	str += info
-	str +=  "</a> </div> <br> <hr>";
-	return str;
+    var website = element["Website"];
+    var str = "<div class=table-element> <a ref =" + website + "><span><b>";
+    str = str + element["Name"] + "</b> </span> <br>";
+    var info = element["About"];
+    if (typeof info == "undefined") {
+        var info = website;
+    }
+    str += info
+    str +=  "</a> </div> <br> <hr>";
+    return str;
 }
 
 function displayData(dataset) {
-	for (var element in dataset) {
-		$(".data").append(dataset[element]["toString"]);
-	}
+    for (var element in dataset) {
+        $(".data").append(dataset[element]["toString"]);
+    }
 }
 
 function filterData(dataset) {
-	filters = {};
-	$(".filters div").each(function() {
-		data_class = $(this).attr("class");
-		filter_type = $(this).attr("data-filter");
-		if (filter_type === "select") {
-			filters[data_class] = $(this).children("select").val();
-		} else if (filter_type === "checkbox") {
-			checks = [];
-			$(this).children("input[type=checkbox]:checked").each(function() {
-				checks.push($(this).val());
-			});
-			if (checks.length > 0) {
-				filters[data_class] = checks;
-			}
-		} else if (filter_type === "boolean") {
-			filters[data_class] = $(this).children("input[type=checkbox]").is(":checked");
-		}
-	});
+    filters = {};
+    $(".filters div").each(function() {
+        data_class = $(this).attr("class");
+        filter_type = $(this).attr("data-filter");
+        if (filter_type === "select" && $(this).children("select").val() !== "") {
+            filters[data_class] = $(this).children("select").val();
+        } else if (filter_type === "checkbox") {
+            checks = [];
+            $(this).children("input[type=checkbox]:checked").each(function() {
+                checks.push($(this).val());
+            });
+            if (checks.length > 0) {
+                filters[data_class] = checks;
+            }
+        } else if (filter_type === "boolean") {
+            filters[data_class] = $(this).children("input[type=checkbox]").is(":checked");
+        }
+    });
+    // console.log(filters);
+    for (var label in filters) {
+        // Select
+        if (typeof filters[label] === "string") {
+            for (var element in dataset) {
+                // Contains the substring in the filter
+                if (dataset[element][label].indexOf(filters[label]) === -1) {
+                    delete dataset[element];
+                }
+            }
+        }
+        // Checkboxes
+        if (typeof filters[label] === "object") {
+            for (var element in dataset) {
+                toDelete = true;
+                for (var i = 0; i < filters[label].length; i++) {
+                    if (dataset[element][label].indexOf(filters[label][i]) !== -1) {
+                        toDelete = false;
+                    }
+                }
+                if (toDelete) {
+                    delete dataset[element];
+                }
+            }
+        }
+        // Binary, only if searching specifically for something and not meeting reqs will be removed. 
+        if (typeof filters[label] === "boolean") {
+            for (var element in dataset) {
+                if (filters[label] && !dataset[element][label]) {
+                    delete dataset[element];
+                }
+            }
+        }
+    }
 
-	for (var label in filters) {
-		// Select
-		if (typeof filters[label] === "string") {
-			for (var element in dataset) {
-				// Contains the substring in the filter
-				if (dataset[element][label].indexOf(filters[label]) === -1) {
-					delete dataset[element];
-				}
-			}
-		}
-		// Checkboxes
-		if (typeof filters[label] === "object") {
-			for (var element in dataset) {
-				if (!filters[label].includes(dataset[element][label])) {
-					delete dataset[element];
-				}
-			}
-		}
-		// Binary, only if searching specifically for something and not meeting reqs will be removed. 
-		if (typeof filters[label] === "boolean") {
-			for (var element in dataset) {
-				if (filters[label] && !dataset[element][label]) {
-					delete dataset[element];
-				}
-			}
-		}
-	}
+    // console.log(dataset);
 
-	console.log(dataset);
-
-	return dataset;
+    return dataset;
 }

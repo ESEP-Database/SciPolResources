@@ -28,9 +28,9 @@ def makeSheetDatabase(worksheet, fancy=False):
         if count > 6 : break
         entry = {}
         for i in range(len(row)):
-            if labels[i] == " ":
+            if labels[i] == None or labels[i] == " ":
                 continue
-            entry[labels[i]] = row[i].value
+            entry[labels[i].strip()] = row[i].value
             if row[i].value == "" or row[i].value == "Yes" or row[i].value == "No":
                 entry[labels[i]] = True if row[i].value == "Yes" else False
         db[makeKey()] = entry

@@ -1,193 +1,193 @@
-<option>Afghanistan </option> \
-<option>Albania </option> \
-<option>Algeria </option> \
-<option>Andorra </option> \
-<option>Angola </option> \
-<option>Antigua and Barbuda </option> \
-<option>Argentina </option> \
-<option>Armenia </option> \
-<option>Australia </option> \
-<option>Austria </option> \
-<option>Azerbaijan </option> \
-<option>Bahamas </option> \
-<option>Bahrain </option> \
-<option>Bangladesh </option> \
-<option>Barbados </option> \
-<option>Belarus </option> \
-<option>Belgium </option> \
-<option>Belize </option> \
-<option>Benin </option> \
-<option>Bhutan </option> \
-<option>Bolivia (Plurinational State of) </option> \
-<option>Bosnia and Herzegovina </option> \
-<option>Botswana </option> \
-<option>Brazil </option> \
-<option>Brunei Darussalam </option> \
-<option>Bulgaria </option> \
-<option>Burkina Faso </option> \
-<option>Burundi </option> \
-<option>Cabo Verde </option> \
-<option>Cambodia </option> \
-<option>Cameroon </option> \
-<option>Canada </option> \
-<option>Central African Republic </option> \
-<option>Chad </option> \
-<option>Chile </option> \
-<option>China </option> \
-<option>Colombia </option> \
-<option>Comoros </option> \
-<option>Congo </option> \
-<option>Costa Rica </option> \
-<option>Côte D'Ivoire </option> \
-<option>Croatia </option> \
-<option>Cuba </option> \
-<option>Cyprus </option> \
-<option>Czech Republic </option> \
-<option>Democratic People's Republic of Korea </option> \
-<option>Democratic Republic of the Congo </option> \
-<option>Denmark </option> \
-<option>Djibouti </option> \
-<option>Dominica </option> \
-<option>Dominican Republic </option> \
-<option>Ecuador </option> \
-<option>Egypt </option> \
-<option>El Salvador </option> \
-<option>Equatorial Guinea </option> \
-<option>Eritrea </option> \
-<option>Estonia </option> \
-<option>Ethiopia </option> \
-<option>Fiji </option> \
-<option>Finland </option> \
-<option>France </option> \
-<option>Gabon </option> \
-<option>Gambia (Republic of The) </option> \
-<option>Georgia </option> \
-<option>Germany </option> \
-<option>Ghana </option> \
-<option>Greece </option> \
-<option>Grenada </option> \
-<option>Guatemala </option> \
-<option>Guinea </option> \
-<option>Guinea Bissau </option> \
-<option>Guyana </option> \
-<option>Haiti </option> \
-<option>Honduras </option> \
-<option>Hungary </option> \
-<option>Iceland </option> \
-<option>India </option> \
-<option>Indonesia </option> \
-<option>Iran (Islamic Republic of) </option> \
-<option>Iraq </option> \
-<option>Ireland </option> \
-<option>Israel </option> \
-<option>Italy </option> \
-<option>Jamaica </option> \
-<option>Japan </option> \
-<option>Jordan </option> \
-<option>Kazakhstan </option> \
-<option>Kenya </option> \
-<option>Kiribati </option> \
-<option>Kuwait </option> \
-<option>Kyrgyzstan </option> \
-<option>Lao People’s Democratic Republic </option> \
-<option>Latvia </option> \
-<option>Lebanon </option> \
-<option>Lesotho </option> \
-<option>Liberia </option> \
-<option>Libya </option> \
-<option>Liechtenstein </option> \
-<option>Lithuania </option> \
-<option>Luxembourg </option> \
-<option>Madagascar </option> \
-<option>Malawi </option> \
-<option>Malaysia </option> \
-<option>Maldives </option> \
-<option>Mali </option> \
-<option>Malta </option> \
-<option>Marshall Islands </option> \
-<option>Mauritania </option> \
-<option>Mauritius </option> \
-<option>Mexico </option> \
-<option>Micronesia (Federated States of) </option> \
-<option>Monaco </option> \
-<option>Mongolia </option> \
-<option>Montenegro </option> \
-<option>Morocco </option> \
-<option>Mozambique </option> \
-<option>Myanmar </option> \
-<option>Namibia </option> \
-<option>Nauru </option> \
-<option>Nepal </option> \
-<option>Netherlands </option> \
-<option>New Zealand </option> \
-<option>Nicaragua </option> \
-<option>Niger </option> \
-<option>Nigeria </option> \
-<option>Norway </option> \
-<option>Oman </option> \
-<option>Pakistan </option> \
-<option>Palau </option> \
-<option>Panama </option> \
-<option>Papua New Guinea </option> \
-<option>Paraguay </option> \
-<option>Peru </option> \
-<option>Philippines </option> \
-<option>Poland </option> \
-<option>Portugal </option> \
-<option>Qatar </option> \
-<option>Republic of Korea </option> \
-<option>Republic of Moldova </option> \
-<option>Romania </option> \
-<option>Russian Federation </option> \
-<option>Rwanda </option> \
-<option>Saint Kitts and Nevis </option> \
-<option>Saint Lucia </option> \
-<option>Saint Vincent and the Grenadines </option> \
-<option>Samoa </option> \
-<option>San Marino </option> \
-<option>Sao Tome and Principe </option> \
-<option>Saudi Arabia </option> \
-<option>Senegal </option> \
-<option>Serbia </option> \
-<option>Seychelles </option> \
-<option>Sierra Leone </option> \
-<option>Singapore </option> \
-<option>Slovakia </option> \
-<option>Slovenia </option> \
-<option>Solomon Islands </option> \
-<option>Somalia </option> \
-<option>South Africa </option> \
-<option>South Sudan </option> \
-<option>Spain </option> \
-<option>Sri Lanka </option> \
-<option>Sudan </option> \
-<option>Suriname </option> \
-<option>Swaziland </option> \
-<option>Sweden </option> \
-<option>Switzerland </option> \
-<option>Syrian Arab Republic </option> \
-<option>Tajikistan </option> \
-<option>Thailand </option> \
-<option>The former Yugoslav Republic of Macedonia </option> \
-<option>Timor—Leste </option> \
-<option>Togo </option> \
-<option>Tonga </option> \
-<option>Trinidad and Tobago </option> \
-<option>Tunisia </option> \
-<option>Turkey </option> \
-<option>Turkmenistan </option> \
-<option>Tuvalu </option> \
-<option>Uganda </option> \
-<option>Ukraine </option> \
-<option>United Arab Emirates </option> \
-<option>United Kingdom of Great Britain and Northern Ireland </option> \
-<option>United Republic of Tanzania </option> \
-<option>United States of America </option> \
-<option>Uruguay </option> \
-<option>Uzbekistan </option> \
-<option>Vanuatu </option> \
-<option>Venezuela, Bolivarian Republic of </option> \
-<option>Viet Nam </option> \
-<option>Yemen </option> \
-<option>Zambia </option> \
-<option>Zimbabwe </option> \
+Afghanistan
+Albania
+Algeria
+Andorra
+Angola
+Antigua and Barbuda
+Argentina
+Armenia
+Australia
+Austria
+Azerbaijan
+Bahamas
+Bahrain
+Bangladesh
+Barbados
+Belarus
+Belgium
+Belize
+Benin
+Bhutan
+Bolivia (Plurinational State of)
+Bosnia and Herzegovina
+Botswana
+Brazil
+Brunei Darussalam
+Bulgaria
+Burkina Faso
+Burundi
+Cabo Verde
+Cambodia
+Cameroon
+Canada
+Central African Republic
+Chad
+Chile
+China
+Colombia
+Comoros
+Congo
+Costa Rica
+Côte D'Ivoire
+Croatia
+Cuba
+Cyprus
+Czech Republic
+Democratic People's Republic of Korea
+Democratic Republic of the Congo
+Denmark
+Djibouti
+Dominica
+Dominican Republic
+Ecuador
+Egypt
+El Salvador
+Equatorial Guinea
+Eritrea
+Estonia
+Ethiopia
+Fiji
+Finland
+France
+Gabon
+Gambia (Republic of The)
+Georgia
+Germany
+Ghana
+Greece
+Grenada
+Guatemala
+Guinea
+Guinea Bissau
+Guyana
+Haiti
+Honduras
+Hungary
+Iceland
+India
+Indonesia
+Iran (Islamic Republic of)
+Iraq
+Ireland
+Israel
+Italy
+Jamaica
+Japan
+Jordan
+Kazakhstan
+Kenya
+Kiribati
+Kuwait
+Kyrgyzstan
+Lao People’s Democratic Republic
+Latvia
+Lebanon
+Lesotho
+Liberia
+Libya
+Liechtenstein
+Lithuania
+Luxembourg
+Madagascar
+Malawi
+Malaysia
+Maldives
+Mali
+Malta
+Marshall Islands
+Mauritania
+Mauritius
+Mexico
+Micronesia (Federated States of)
+Monaco
+Mongolia
+Montenegro
+Morocco
+Mozambique
+Myanmar
+Namibia
+Nauru
+Nepal
+Netherlands
+New Zealand
+Nicaragua
+Niger
+Nigeria
+Norway
+Oman
+Pakistan
+Palau
+Panama
+Papua New Guinea
+Paraguay
+Peru
+Philippines
+Poland
+Portugal
+Qatar
+Republic of Korea
+Republic of Moldova
+Romania
+Russian Federation
+Rwanda
+Saint Kitts and Nevis
+Saint Lucia
+Saint Vincent and the Grenadines
+Samoa
+San Marino
+Sao Tome and Principe
+Saudi Arabia
+Senegal
+Serbia
+Seychelles
+Sierra Leone
+Singapore
+Slovakia
+Slovenia
+Solomon Islands
+Somalia
+South Africa
+South Sudan
+Spain
+Sri Lanka
+Sudan
+Suriname
+Swaziland
+Sweden
+Switzerland
+Syrian Arab Republic
+Tajikistan
+Thailand
+The former Yugoslav Republic of Macedonia
+Timor—Leste
+Togo
+Tonga
+Trinidad and Tobago
+Tunisia
+Turkey
+Turkmenistan
+Tuvalu
+Uganda
+Ukraine
+United Arab Emirates
+United Kingdom of Great Britain and Northern Ireland
+United Republic of Tanzania
+United States of America
+Uruguay
+Uzbekistan
+Vanuatu
+Venezuela, Bolivarian Republic of
+Viet Nam
+Yemen
+Zambia
+Zimbabwe
