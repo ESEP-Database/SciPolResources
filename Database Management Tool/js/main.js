@@ -6,13 +6,27 @@ var entry;
 var mode;
 var type;
 
-
 var provider = new firebase.auth.GoogleAuthProvider();
+var database = firebase.database();
+var data;
+firebase.database().ref().once('value').then(function(snapshot) {
+    data = snapshot.val()
+    data = preprocess(data);
+    displayAllData();
+    
+});
 
 $(document).ready(function() {
 
-	var firebaseRef = new Firebase("https://esep-database.firebaseio.com/");
-
+	var firebaseRef = new Firebase("https://esep-testing.firebaseio.com/");
+	firebase.auth().onAuthStateChanged(function(user) {
+		if (user) {
+			console.log(user);
+		} else {
+			var provider = new firebase.auth.GoogleAuthProvider();
+			firebase.auth().signInWithRedirect(provider);
+		}
+	});
 
 	loadToolLoaders();
 	// When the "Go!" button is clicked, try to load the page with the corresponding 

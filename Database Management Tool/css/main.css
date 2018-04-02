@@ -1,18 +1,18 @@
-body {
-  font: normal 18px/100% "Georgia Serif", Georgia, serif;
-  background-color: rgba(31, 45, 96, 1);
+*{font-family:sans-serif;}
 
+
+body {
+  font: sans-serif;
   margin: 6; 
 }
 
 #header {
 	text-align: center;
+	font-size: 25px;
 	float: left;
-	width: 25%;
+	width: 35%;
 	height: 100%;
 	padding-top: 10%;
-	background-color: rgba(31, 45, 96, 1);
-	color: white;
 }
 
 #tool-loader {
@@ -22,7 +22,6 @@ body {
 }
 
 #form-area {
-	background-color: rgba(224, 237, 252, 1);
 	color: black;
 	padding-left: 28%;
 	height: 100%;
