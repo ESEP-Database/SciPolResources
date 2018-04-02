@@ -9,12 +9,7 @@ var type;
 var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database();
 var data;
-firebase.database().ref().once('value').then(function(snapshot) {
-    data = snapshot.val()
-    data = preprocess(data);
-    displayAllData();
-    
-});
+
 
 $(document).ready(function() {
 
@@ -34,6 +29,12 @@ $(document).ready(function() {
 
 	initializeFirebase(firebaseRef);
 
+	firebase.database().ref().once('value').then(function(snapshot) {
+    data = snapshot.val()
+    data = preprocess(data);
+    displayAllData();
+    
+	});
 
 	$("#tool-loader").click(function() {
 		mode = $("#mode").val()
@@ -41,24 +42,6 @@ $(document).ready(function() {
 		loadTool(mode, type);
 	});
 
-
-	// Not currently functional, to be implemented at a later date.
-	firebase.auth().signInWithPopup(provider).then(function(result) {
-	  // This gives you a Google Access Token. You can use it to access the Google API.
-	  var token = result.credential.accessToken;
-	  // The signed-in user info.
-	  var user = result.user;
-	  // ...
-	}).catch(function(error) {
-	  // Handle Errors here.
-	  var errorCode = error.code;
-	  var errorMessage = error.message;
-	  // The email of the user's account used.
-	  var email = error.email;
-	  // The firebase.auth.AuthCredential type that was used.
-	  var credential = error.credential;
-	  // ...
-	});
 });
 
 
