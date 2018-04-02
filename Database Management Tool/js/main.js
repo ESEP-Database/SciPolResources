@@ -19,7 +19,7 @@ $(document).ready(function() {
 			console.log(user);
 		} else {
 			var provider = new firebase.auth.GoogleAuthProvider();
-			firebase.auth().signInWithRedirect(provider);
+			firebase.auth().signInWithPopup(provider);
 		}
 	});
 
