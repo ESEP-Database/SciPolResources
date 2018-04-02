@@ -17,10 +17,12 @@ $(document).ready(function() {
 	firebase.auth().onAuthStateChanged(function(user) {
 		if (user) {
 			console.log(user);
+			firebase.database().ref("new stuff").set("dump");
 		} else {
 			var provider = new firebase.auth.GoogleAuthProvider();
 			firebase.auth().signInWithPopup(provider);
 		}
+
 	});
 
 	loadToolLoaders();
