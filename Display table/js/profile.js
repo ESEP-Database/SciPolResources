@@ -10,11 +10,13 @@ firebase.database().ref(profile_id).once('value').then(function(snapshot) {
 
 function populate_page(profile) {
 	for (key in profile) {
-		$("body .content").append("<b> " + key + "</b> : " + profile[key] + "<br>");
+		if (key == "Resource Type") {
+			continue;
+		}
+		val = profile[key];
+		if (key == "Website") {
+			val = "<a href=" + val + ">" + val + "<a>";
+		}
+		$("body .content").append("<br> <b> " + key + "</b> : " + val + "<br>");
 	}
 }
-
-$(document).ready(function() {
-	console.log(profile)
-    console.log(profile_id);
-});

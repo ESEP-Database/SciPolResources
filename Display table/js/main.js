@@ -5,6 +5,11 @@ var data;
 firebase.database().ref().once('value').then(function(snapshot) {
     data = snapshot.val()
     data = preprocess(data);
+    displayAllData();
+    $("#resetFilters").click(function() {
+        console.log("Nope");
+    });
+    $("#resetPage").click(resetPage());
 });
 
 $(document).ready(function() {
@@ -13,9 +18,13 @@ $(document).ready(function() {
         $(".data").empty();
         if(this.value){
             var filters_name = "filters_" + this.value;
-            // console.log(filters_name);
+            console.log(filters_name);
             window[filters_name]();
+            console.log(this.value);
             displayData(data[this.value]);
+        } else {
+            console.log("Normal case");
+        	displayAllData();
         }
         datatype = this.value;
         $(".filters div").each(function() {
@@ -36,29 +45,41 @@ $(document).ready(function() {
 function preprocess(data) {
     // syllabi, degree programs, etc
     str = '';
-    for (var datatype in data) {
+   	var processed_data = {};
+    for (var key in data) {
+    	item = data[key];
+    	item["toString"] = toString(item, key);
+    	if (typeof processed_data[item["Resource Type"]] === "undefined") {
+    		processed_data[item["Resource Type"]] = {}
+    	}
+    	processed_data[item["Resource Type"]][key] = item;
+    }
+    console.log(processed_data);
+    return processed_data;
+    /*for (var datatype in data) {
         // Individual entries
         dataset = data[datatype];
         for (var element in dataset) {
             dataset[element]["toString"] = toString(dataset[element], datatype);
         }
     }
-    return data
+    return data*/
 }
 
 /*    Given an element, give a short string that characterizes it in the search table.
         optional arg, datatype can be used to make the toStrings more unique.
 */
-function toString(element, datatype) {
+function toString(element, key) {
     var website = element["Website"];
-    var str = "<div class=table-element> <a ref =" + website + "><span><b>";
+    var str = "<a href=http://science-engage.org/profile.html?id=" + key + "><div class=table-element> <span><b>";
     str = str + element["Name"] + "</b> </span> <br>";
     var info = element["About"];
     if (typeof info == "undefined") {
         var info = website;
     }
     str += info
-    str +=  "</a> </div> <br> <hr>";
+    str +=  "</div> </a> <br> <hr>";
+    console.log(str);
     return str;
 }
 
@@ -66,6 +87,13 @@ function displayData(dataset) {
     for (var element in dataset) {
         $(".data").append(dataset[element]["toString"]);
     }
+}
+
+function displayAllData() {
+	for (datatype in data) {
+		dataset = data[datatype];
+		displayData(dataset);
+	}
 }
 
 function filterData(dataset) {
@@ -125,4 +153,19 @@ function filterData(dataset) {
     // console.log(dataset);
 
     return dataset;
+}
+
+function resetFilters() {
+    $('input:checkbox').prop("checked", false);
+    $(".Location select").val('');
+    $(".data").empty()
+    displayData(data[$("select.main").val()]);
+}
+
+function resetPage() {
+    console.log("Resetting page");
+	$("select.main").val('');
+	$(".data").empty();
+	$(".filters").empty()
+    displayAllData();
 }

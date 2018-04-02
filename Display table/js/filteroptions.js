@@ -1,5 +1,5 @@
 // List of UN member states
-const countrySelectString = '<div data-filter="select" class="Location"> Select what country to search in: <br> \
+const countrySelectString = '<br> <div data-filter="select" class="Location"> <b> Select what country to search in:</b> <br> \
 		<select class="country"> \
 			<option></option> \
 			<option>Afghanistan</option> \
@@ -198,7 +198,7 @@ const countrySelectString = '<div data-filter="select" class="Location"> Select 
 		</select> \
 	</div>'
 
-const academicLevelString = '<div data-filter="checkbox" class="Academic Level"> Select what academic level to search for: <br> \
+const academicLevelString = '<br><div data-filter="checkbox" class="Academic Level"> <b>Select what academic level to search for:</b> <br> \
 			<input type="checkbox" id="Bachelor\'s" value="Bachelor\'s"> \
 			<label for="Bachelor\'s"> Bachelor\'s</label> \
 			<br>   \
@@ -209,24 +209,24 @@ const academicLevelString = '<div data-filter="checkbox" class="Academic Level">
 			<label for="Doctoral"> Doctoral</label> \
 		</div>'
 
-const compensatedSelectString = '<div data-filter="boolean" class="Compensation"> Look for only compensated opportunities: <br> \
+const compensatedSelectString = '<br><div data-filter="boolean" class="Compensation"> <b>Look for only compensated opportunities:</b> <br> \
 		<input type="checkbox" id="Compensation" value="Compensation"> \
 		<label for="Compensation"> Compensation</label> \
 		</div> '
 
-const citizenshipSelectString = '<div data-filter="boolean" class="Citizenship Requirement"> Citizenship required? <br> \
+const citizenshipSelectString = '<br><div data-filter="boolean" class="Citizenship Requirement"> <b>Citizenship required?</b> <br> \
 		<input type="checkbox" id="Citizenship Requirement" value="Citizenship Requirement"> \
 		<label for="Citizenship Requirement"> Citizenship Requirement</label> \
 		</div>'
 
 
 function filters_syllabi(){
-	$(".filters").append(academicLevelString + '<div data-filter="checkbox" class="Teaching Resource Type"> Select what resource type to search for: <br>\
+	$(".filters").append(academicLevelString + '<br><div data-filter="checkbox" class="Teaching Resource Type"> <b>Select what resource type to search for:</b> <br>\
 		<input type="checkbox" id="Syllabus" value="Syllabus"> \
 		<label for="Syllabus"> Syllabus</label> \
 		<br>   \
-		<input type="checkbox" id="Workshop" value="Workshop"> \
-		<label for="Workshop"> Workshop</label> \
+		<input type="checkbox" id="Template" value="Template"> \
+		<label for="Template"> Template</label> \
 		<br>   \
 		<input type="checkbox" id="Instructional video" value="Instructional video"> \
 		<label for="Instructional video"> Instructional video</label> \
@@ -259,7 +259,7 @@ function filters_training(){
 
 }
 function filters_networks(){
-	$(".filters").append('<div data-filter="boolean" class="Membership Fee"> Only organizations with membership fees: <br>\
+	$(".filters").append('<br><div data-filter="boolean" class="Membership Fee"> <b>Only organizations with membership fees:</b> <br>\
 		<input type="checkbox" id="Membership Fees" value="Membership Fees"> \
 		<label for="Membership Fees"> Membership Fees</label> \
 		<br>   \
