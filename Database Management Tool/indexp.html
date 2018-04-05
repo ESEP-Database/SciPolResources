@@ -1,16 +1,19 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/ESEP-Database/SciPolResources/d86a731b/Database%20Management%20Tool/css/main.css">
+
+<div id="signin"> Please sign-in with an authenticated Google account to continue. </div>
+
 <div id="header">
 I would like to 
 
 <select id="mode"> 
-    <option>Add</option>
-    <option>Edit</option>
-    <option>Remove</option>
+    <option value="add">Add</option>
+    <option value="edit">Edit</option>
+    <option value="remove">Remove</option>
 </select>
 
 a
 
-<select class="main">
+<select id="resource">
     <option></option>
     <option value="syllabi">Course Syllabus or Teaching Resource</option>
     <option value="degree">Degree Program</option>
@@ -26,11 +29,6 @@ a
 </select>
 
 
-
-
-<div> </div>
-
-<button id="tool-loader"> Go! </button>
 </div>
 
 <div id= "form-area">

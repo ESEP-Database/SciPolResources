@@ -239,7 +239,7 @@ function filters_degree(){
 }
 
 function filters_details(){
-	$(".filters").append(compensatedSelectString+ countrySelectString);
+	$(".filters").append(compensatedSelectString + countrySelectString);
 
 }
 function filters_fellowships(){
