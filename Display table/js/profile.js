@@ -9,8 +9,13 @@ firebase.database().ref(profile_id).once('value').then(function(snapshot) {
 });
 
 function populate_page(profile) {
+	name = profile["Name"]
+	$("body .name").append('<b>' + name + "</b>");
 	for (key in profile) {
 		if (key == "Resource Type") {
+			continue;
+		}
+		if (key == "Name") {
 			continue;
 		}
 		val = profile[key];

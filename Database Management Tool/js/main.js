@@ -1,8 +1,4 @@
-var meeting;
-var data;
-var degree;    
-
-var entry;
+var key;
 var mode;
 var type;
 

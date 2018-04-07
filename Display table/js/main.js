@@ -87,6 +87,7 @@ function displayData(dataset) {
     for (var element in dataset) {
         $(".data").append(dataset[element]["toString"]);
     }
+    $(".count u").html($("div.table-element").length);
 }
 
 function displayAllData() {
