@@ -75,7 +75,7 @@ function toString(element, key) {
     str = str + element["Name"] + "</b> </span> <br>";
     var info = element["About"];
     if (typeof info == "undefined") {
-        var info = website;
+        var info = element["Institution"];
     }
     str += info
     str +=  "</div> </a> <br> <hr>";

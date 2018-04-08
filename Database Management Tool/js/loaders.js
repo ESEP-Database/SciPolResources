@@ -22,7 +22,7 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Belize</option> \
             <option>Benin</option> \
             <option>Bhutan</option> \
-            <option>Bolivia (Plurinational State of)</option> \
+            <option>Bolivia </option> \
             <option>Bosnia and Herzegovina</option> \
             <option>Botswana</option> \
             <option>Brazil</option> \
@@ -64,7 +64,7 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Finland</option> \
             <option>France</option> \
             <option>Gabon</option> \
-            <option>Gambia (Republic of The)</option> \
+            <option>Gambia</option> \
             <option>Georgia</option> \
             <option>Germany</option> \
             <option>Ghana</option> \
@@ -80,7 +80,7 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Iceland</option> \
             <option>India</option> \
             <option>Indonesia</option> \
-            <option>Iran (Islamic Republic of)</option> \
+            <option>Iran </option> \
             <option>Iraq</option> \
             <option>Ireland</option> \
             <option>Israel</option> \
@@ -93,7 +93,7 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Kiribati</option> \
             <option>Kuwait</option> \
             <option>Kyrgyzstan</option> \
-            <option>Lao People’s Democratic Republic</option> \
+            <option>Laos</option> \
             <option>Latvia</option> \
             <option>Lebanon</option> \
             <option>Lesotho</option> \
@@ -102,6 +102,7 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Liechtenstein</option> \
             <option>Lithuania</option> \
             <option>Luxembourg</option> \
+            <option>Macedonia</option> \
             <option>Madagascar</option> \
             <option>Malawi</option> \
             <option>Malaysia</option> \
@@ -112,7 +113,7 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Mauritania</option> \
             <option>Mauritius</option> \
             <option>Mexico</option> \
-            <option>Micronesia (Federated States of)</option> \
+            <option>Micronesia </option> \
             <option>Monaco</option> \
             <option>Mongolia</option> \
             <option>Montenegro</option> \
@@ -139,7 +140,6 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Poland</option> \
             <option>Portugal</option> \
             <option>Qatar</option> \
-            <option>Republic of Korea</option> \
             <option>Republic of Moldova</option> \
             <option>Romania</option> \
             <option>Russian Federation</option> \
@@ -161,6 +161,7 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Solomon Islands</option> \
             <option>Somalia</option> \
             <option>South Africa</option> \
+            <option>South Korea</option> \
             <option>South Sudan</option> \
             <option>Spain</option> \
             <option>Sri Lanka</option> \
@@ -169,10 +170,10 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Swaziland</option> \
             <option>Sweden</option> \
             <option>Switzerland</option> \
-            <option>Syrian Arab Republic</option> \
+            <option>Syria</option> \
             <option>Tajikistan</option> \
+            <option>Tanzania</option> \
             <option>Thailand</option> \
-            <option>The former Yugoslav Republic of Macedonia</option> \
             <option>Timor—Leste</option> \
             <option>Togo</option> \
             <option>Tonga</option> \
@@ -184,14 +185,13 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Uganda</option> \
             <option>Ukraine</option> \
             <option>United Arab Emirates</option> \
-            <option>United Kingdom of Great Britain and Northern Ireland</option> \
-            <option>United Republic of Tanzania</option> \
+            <option>United Kingdom </option> \
             <option>United States of America</option> \
             <option>Uruguay</option> \
             <option>Uzbekistan</option> \
             <option>Vanuatu</option> \
             <option>Venezuela</option> \
-            <option>Viet Nam</option> \
+            <option>Vietnam</option> \
             <option>Yemen</option> \
             <option>Zambia</option> \
             <option>Zimbabwe</option> \
@@ -403,7 +403,7 @@ const requirementString = '<br><div data-filter="text" id="Requirement" class="f
 const geoScopeString = '<br><div data-filter="text" class="Geographic Scope"> <b> Geographic Scope: </b> \
         <input type="text" name="Geographic Scope" id="Geographic Scope"> <br> </div>'
 
-const submitButtonString = '<br> <button id="submitForm" onclick="submitForm()">Submit Change</button> '
+const submitButtonString = '<br> <button id="submitForm" onclick="submitForm()"></button> '
 
 function load_syllabi(){
     $("#textfields").append(nameString + teachingResourceString + yearString + 

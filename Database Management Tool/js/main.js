@@ -19,6 +19,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function loadData() {
     $("#header").show(); // Should be before function call
+    $("#signin").empty();
     firebase.database().ref().on('value', function(snapshot) {
         data = snapshot.val()
         data = preprocess(data);    
@@ -78,6 +79,13 @@ function createNewTextField(mode, type) {
     var functionName = "load_" + type;
     window[functionName](); 
     $("#textfields").append(submitButtonString);
+    if (mode === "add") {
+        $("button#submitForm").html("Add New Resource");
+    } else if (mode === "edit") {
+        $("button#submitForm").html("Submit Change");
+    } else if (mode === "remove") {
+        $("button#submitForm").html("Remove Resource");
+    }
 }
 
 /* Displays to the viewer the existing options to edit or remove from a certain type.

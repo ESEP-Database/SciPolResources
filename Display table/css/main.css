@@ -14,13 +14,13 @@ hr {
 .header {
 	border-bottom: 1px solid lightgray;
 	margin-bottom: 10px;
-	font-size: 25px;
+	font-size: 30px;
 }
 
 .name {
 	margin-bottom: 10px;
-	font-size: 18px;
-
+	font-size: 21px;
+	color: rgba(18, 88, 112);
 }
 
 
@@ -40,6 +40,21 @@ hr {
 .inputs button {
     border-radius: 10px;
     border: 0.1rem dotted grey;
+}
+
+
+.link a#return{
+    border-radius: 10px;
+    border: 0.1rem dotted grey;
+    background-color: lightgray;
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+}
+
+span.type {
+	float: right;
+	margin-right: 10px;
 }
 
 .table-element{
