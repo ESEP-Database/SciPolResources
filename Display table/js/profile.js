@@ -28,14 +28,27 @@ function populate_page(profile) {
 	for (key in profile) {
 		val = profile[key];
 		if (key == "Resource Type") {
-			$("body .type").append('<b><a href="http://www.science-engage.org/uploads/3/4/9/0/34906793/esep_resource_database_parameters.pdf"> ' + key + "</a>:</b> "  + resourceTypes[val] + "<br>");
-		}
-		if (key == "Name") {
+			$("body .type").append('<b><a href="http://science-engage.org/databaseparameters.html"> ' + key + "</a>:</b> "  + resourceTypes[val] + "<br>");
 			continue;
 		}
-		if (key == "Website") {
-			val = "<a href=" + val + ">" + val + "<a>";
+		if ((key === "Membership Fee" || key === "Compensation" ) && typeof(val) === "boolean") {
+			console.log("Working");
+			if (val) {
+				val = "Yes";
+				console.log("Yes");
+			} else {
+				val = "No";
+				console.log("No");
+			}
 		}
-		$("body .content").append("<br> <b> " + key + ":</b> " + val + "<br>");
+		if (key === "Name") {
+			continue;
+		}
+		if (key === "Website") {
+			val = "<a href='" + val + "'>Learn more</a>";
+		}
+		console.log(key, val);
+
+		$("body .content").append("<br> <b> " + key + ":</b> " + val + "");
 	}
 }

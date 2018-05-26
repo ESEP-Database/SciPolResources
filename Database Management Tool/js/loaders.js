@@ -22,7 +22,7 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
             <option>Belize</option> \
             <option>Benin</option> \
             <option>Bhutan</option> \
-            <option>Bolivia </option> \
+            <option>Bolivia</option> \
             <option>Bosnia and Herzegovina</option> \
             <option>Botswana</option> \
             <option>Brazil</option> \

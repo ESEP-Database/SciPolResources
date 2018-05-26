@@ -22,7 +22,7 @@ const countrySelectString = '<br> <div data-filter="select" class="Location"> <b
 			<option>Belize</option> \
 			<option>Benin</option> \
 			<option>Bhutan</option> \
-			<option>Bolivia </option> \
+			<option>Bolivia</option> \
 			<option>Bosnia and Herzegovina</option> \
 			<option>Botswana</option> \
 			<option>Brazil</option> \
@@ -198,6 +198,77 @@ const countrySelectString = '<br> <div data-filter="select" class="Location"> <b
 		</select> \
 	</div>'
 
+const stateSelect = '<select class="state"> \
+						<option></option> \
+						<option>Alabama</option> \
+						<option>Alaska</option> \
+						<option>Arizona</option> \
+						<option>Arkansas</option> \
+						<option>California</option> \
+						<option>Colorado</option> \
+						<option>Connecticut</option> \
+						<option>Delaware</option> \
+						<option>Florida</option> \
+						<option>Georgia</option> \
+						<option>Hawaii</option> \
+						<option>Idaho</option> \
+						<option>Illinois</option> \
+						<option>Indiana</option> \
+						<option>Iowa</option> \
+						<option>Kansas</option> \
+						<option>Kentucky</option> \
+						<option>Louisiana</option> \
+						<option>Maine</option> \
+						<option>Maryland</option> \
+						<option>Massachusetts</option> \
+						<option>Michigan</option> \
+						<option>Minnesota</option> \
+						<option>Mississippi</option> \
+						<option>Missouri</option> \
+						<option>Montana</option> \
+						<option>Nebraska</option> \
+						<option>Nevada</option> \
+						<option>New Hampshire</option> \
+						<option>New Jersey</option> \
+						<option>New Mexico</option> \
+						<option>New York</option> \
+						<option>North Carolina</option> \
+						<option>North Dakota</option> \
+						<option>Ohio</option> \
+						<option>Oklahoma</option> \
+						<option>Oregon</option> \
+						<option>Pennsylvania</option> \
+						<option>Rhode Island</option> \
+						<option>South Carolina</option> \
+						<option>South Dakota</option> \
+						<option>Tennessee</option> \
+						<option>Texas</option> \
+						<option>Utah</option> \
+						<option>Vermont</option> \
+						<option>Virginia</option> \
+						<option>Washington</option> \
+						<option>West Virginia</option> \
+						<option>Wisconsin</option> \
+						<option>Wyoming</option> \
+						<option>Washington, DC</option> \
+					</select>'
+
+function bindStates() {
+	$(".filters div").children(".country").change(function () {
+		if ($(this).val() === "United States of America") {
+			$(this).after(stateSelect);
+			$("select.state").change(function() {
+		        dataset = data[datatype];
+		        dataset = filterData(dataset);
+		        $(".data").empty();
+		        displayData(dataset);
+			});
+		} else {
+			$("select.state").remove();
+		}
+	});
+}
+
 const academicLevelString = '<br><div data-filter="checkbox" class="Academic Level"> <b>Select what academic level to search for:</b> <br> \
 			<input type="checkbox" id="Bachelor\'s" value="Bachelor\'s"> \
 			<label for="Bachelor\'s"> Bachelor\'s</label> \
@@ -207,6 +278,12 @@ const academicLevelString = '<br><div data-filter="checkbox" class="Academic Lev
 			<br>   \
 			<input type="checkbox" id="Doctoral" value="Doctoral"> \
 			<label for="Doctoral"> Doctoral</label> \
+			<br>   \
+			<input type="checkbox" id="Graduate Certificate" value="Graduate Certificate"> \
+			<label for="Graduate Certificate"> Graduate Certificate</label> \
+			<br>   \
+			<input type="checkbox" id="Undergraduate Minor" value="Undergraduate Minor"> \
+			<label for="Undergraduate Minor"> Undergraduate Minor</label> \
 		</div>'
 
 const compensatedSelectString = '<br><div data-filter="boolean" class="Compensation"> <b>Look for only compensated opportunities:</b> <br> \
@@ -236,10 +313,18 @@ function filters_syllabi(){
 }
 function filters_degree(){
 	$(".filters").append(academicLevelString + countrySelectString);
+	bindStates()
 }
 
 function filters_details(){
-	$(".filters").append(compensatedSelectString + countrySelectString);
+	$(".filters").append(compensatedSelectString + countrySelectString + '<br><div data-filter="checkbox" class="Program Type"> <b>Select what program type to search for:</b> <br>\
+		<input type="checkbox" id="Detail & Rotations" value="Detail & Rotations"> \
+		<label for="Detail & Rotations"> Detail & Rotations</label> \
+		<br>   \
+		<input type="checkbox" id="Pairing Schemes" value="Pairing Schemes"> \
+		<label for="Pairing Schemes"> Pairing Schemes</label> \
+		</div> \
+		');
 
 }
 function filters_fellowships(){
@@ -273,7 +358,7 @@ function filters_toolkits(){
 }
 function filters_university(){
 	$(".filters").append(countrySelectString);
-
+	bindStates();
 }
 function filters_other(){
 	$(".filters").append();

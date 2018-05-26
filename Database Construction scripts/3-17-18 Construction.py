@@ -25,7 +25,6 @@ def makeSheetDatabase(worksheet, fancy=False):
     db = {}
     count = 0
     for row in rows:
-        if count > 6 : break
         entry = {}
         for i in range(len(row)):
             if labels[i] == None or labels[i] == " ":
@@ -65,7 +64,7 @@ def validateData(dictionary):
 def main():
     
     # Change this line to load from another spreadsheet. Use the full spreadsheet name and extension.
-    workbook = openpyxl.load_workbook("/home/user/Work/esep-database-project/Database Construction scripts/Restructured ESEP Database - Neel preliminary data.xlsx")
+    workbook = openpyxl.load_workbook("/home/user/Work/esep-database-project/Database Construction scripts/Restructured ESEP Database - FINAL CLEAN.xlsx")
     # sheetnames of workbook at first:
     # ['Glossary', 'Non-Immersive Intern & fellow.', 'Details & Rotations', 'Fellowships', 
     # 'Internships', 'Pairing Schemes', 'Course Syllabi', 'Degree Programs', 
@@ -73,7 +72,7 @@ def main():
     # 'Toolkits & Other Resources', 'Trainings & Workshops', 'University-Based Policy Groups']
 
     sheets = []
-    names = ["syllabi", "degree", "details", "fellowships", "internships", "meetings", "training", "networks", "toolkits", "university", "other"]
+    names = ["syllabi", "details", "meetings", "training", "degree", "networks", "fellowships", "internships", "toolkits", "university", "other"]
     for sheet, name in zip(workbook, names):
         sheets.append({name: makeSheetDatabase(sheet)})
 
@@ -82,7 +81,7 @@ def main():
     # validateData(resources)
 
     # Change the name "resources.json" to dump the file to another location.
-    target_file = open("resources-0.5.json", "w")
+    target_file = open("resources.json", "w")
     target_file.write(json.dumps(resources))
     target_file.close()
 

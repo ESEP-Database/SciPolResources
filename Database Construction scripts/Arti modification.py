@@ -1,7 +1,7 @@
 import json
 
 resources = {}
-with open("esep-testing-export.json") as f:
+with open("resources.json") as f:
 	resources = json.loads(f.read())
 
 new_resources = {}
