@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/ESEP-Database/SciPolResources/32c3bf1e/Display table/css/main.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/ESEP-Database/SciPolResources/2371b871/Display table/css/main.css">
 
 <head>
 	<title>ESEP Resources Database</title>
 </head>
 <body>
 <br>
-<div class="header">Global S&amp;T Policy Resources Database</div>
 <div class="inputs">
 	<div class="selection">
-		I want to view:
+		Select Resource Category:
 		<select class="main">
 			<option></option>
 			<option value="syllabi">Course Syllabi and Teaching Resources</option>
@@ -33,11 +32,14 @@
 	<div class="count">Currently showing <u>0</u> results.</div>
 	<div class="reset">	
 		<button onclick="resetFilters()">Reset filters</button>
-		<span style="display:inline-block; width: 160px;"></span>
+		<span style="display:inline-block; width: 120px;"></span>
 		<button onclick="resetPage()">View all resources</button>
+		<span style="display:inline-block; width: 120px;"></span>
+      	<a id="return" href="http://science-engage.org/databaseparameters.html">View resource categories</a>
+
 	</div>
 </div>
-
+<div class="pages"></div>
 <div class="data">
 
 </div>
@@ -61,7 +63,7 @@
 </script>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/ESEP-Database/SciPolResources/32c3bf1e/Display%20table/js/filteroptions.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/ESEP-Database/SciPolResources/32c3bf1e/Display%20table/js/main.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/ESEP-Database/SciPolResources/2371b871/Display%20table/js/filteroptions.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/ESEP-Database/SciPolResources/2371b871/Display%20table/js/main.js"></script>
 
 </html>

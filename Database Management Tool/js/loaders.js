@@ -1,5 +1,4 @@
-const countrySelectString = '<br> <div data-filter="textselect" id="Location" class="form"> <b> Location details:</b> \
-        <input type="text" name="Details" id="Details"> Country:\
+const countrySelectString = '<br> <div data-filter="location" id="Location" class="form"> <b> Location details:</b> \
         <select class="input" id="Location"> \
             <option></option> \
             <option>Afghanistan</option> \
@@ -198,6 +197,72 @@ const countrySelectString = '<br> <div data-filter="textselect" id="Location" cl
         </select> \
     </div>'
 
+const stateSelectString = '<select id="state"> \
+            <option></option> \
+            <option>Alabama</option> \
+            <option>Alaska</option> \
+            <option>Arizona</option> \
+            <option>Arkansas</option> \
+            <option>California</option> \
+            <option>Colorado</option> \
+            <option>Connecticut</option> \
+            <option>Delaware</option> \
+            <option>Florida</option> \
+            <option>Georgia</option> \
+            <option>Hawaii</option> \
+            <option>Idaho</option> \
+            <option>Illinois</option> \
+            <option>Indiana</option> \
+            <option>Iowa</option> \
+            <option>Kansas</option> \
+            <option>Kentucky</option> \
+            <option>Louisiana</option> \
+            <option>Maine</option> \
+            <option>Maryland</option> \
+            <option>Massachusetts</option> \
+            <option>Michigan</option> \
+            <option>Minnesota</option> \
+            <option>Mississippi</option> \
+            <option>Missouri</option> \
+            <option>Montana</option> \
+            <option>Nebraska</option> \
+            <option>Nevada</option> \
+            <option>New Hampshire</option> \
+            <option>New Jersey</option> \
+            <option>New Mexico</option> \
+            <option>New York</option> \
+            <option>North Carolina</option> \
+            <option>North Dakota</option> \
+            <option>Ohio</option> \
+            <option>Oklahoma</option> \
+            <option>Oregon</option> \
+            <option>Pennsylvania</option> \
+            <option>Rhode Island</option> \
+            <option>South Carolina</option> \
+            <option>South Dakota</option> \
+            <option>Tennessee</option> \
+            <option>Texas</option> \
+            <option>Utah</option> \
+            <option>Vermont</option> \
+            <option>Virginia</option> \
+            <option>Washington</option> \
+            <option>West Virginia</option> \
+            <option>Wisconsin</option> \
+            <option>Wyoming</option> \
+            <option>Washington, DC</option> \
+        </select>'
+
+function bindStates() {
+    $("div#Location").children("#Location").change(function () {
+        console.log($(this).val());
+        if ($(this).val() === "United States of America") {
+            $(this).after(stateSelectString);
+        } else {
+            $("select#state").remove();
+        }
+    });
+}
+
 const yearString = '<br> <div data-filter="select" id="Year" class="form"> <b> Year:</b> \
         <select class="input" id="Year"> \
             <option>1900</option> \
@@ -331,12 +396,18 @@ const academicLevelString = '<br><div data-filter="checkbox" id="Academic Level"
             <br>   \
             <input type="checkbox" id="Doctoral" value="Doctoral"> \
             <label for="Doctoral"> Doctoral</label> \
+            <br>   \
+            <input type="checkbox" id="Graduate Certificate" value="Graduate Certificate"> \
+            <label for="Graduate Certificate"> Graduate Certificate</label> \
+            <br>   \
+            <input type="checkbox" id="Undergraduate Minor" value="Undergraduate Minor"> \
+            <label for="Undergraduate Minor"> Undergraduate Minor</label> \
         </div>'
 
 const compensatedSelectString = '<br><div data-filter="boolean" id="Compensation" class="form"> <b>Compensated:</b> \
         <input type="checkbox" id="Compensation" value="Compensation"> \
         <label for="Compensation"> Compensation</label> \
-        </div> '
+        </div>'
 
 const citizenshipSelectString = '<br><div data-filter="boolean" id="Citizenship Requirement" class="form"> <b>Citizenship required?</b> \
         <input type="checkbox" id="Citizenship Requirement" value="Citizenship Requirement"> \
@@ -352,7 +423,15 @@ const teachingResourceString = '<br><div data-filter="checkbox" id="Teaching Res
         <br>   \
         <input type="checkbox" id="Instructional video" value="Instructional video"> \
         <label for="Instructional video"> Instructional video</label> \
-        </div> '
+        </div>'
+
+const detailsPairingString = '<br><div data-filter="checkbox" class="Program Type"> <b>Select what program type to search for:</b> <br>\
+        <input type="checkbox" id="Details & Rotations" value="Details & Rotations"> \
+        <label for="Details & Rotations"> Details & Rotations</label> \
+        <br>   \
+        <input type="checkbox" id="Pairing Schemes" value="Pairing Schemes"> \
+        <label for="Pairing Schemes"> Pairing Schemes</label> \
+        </div>'
 
 const membershipString = '<br><div data-filter="boolean" id="Membership Fee" class="form"> <b>Membership fee?:</b>\
         <input type="checkbox" id="Membership Fees" value="Membership Fees"> \
@@ -378,6 +457,9 @@ const websiteString = '<br><div data-filter="text" id="Website" class="form"> <b
 const organizationString = '<br><div data-filter="text" id="Sponsoring Organization" class="form"> <b> Sponsoring Organization: </b> \
         <input type="text" name="Sponsoring Organization" id="Sponsoring Organization"> <br> </div>'
 
+const organizerString = '<br><div data-filter="text" id="Organizer" class="form"> <b> Organizer: </b> \
+        <input type="text" name="Organizer" id="Organizer"> <br> </div>'
+
 const durationString = '<br><div data-filter="text" id="Duration" class="form"> <b> Duration: </b> \
         <input type="text" name="Duration" id="Duration"> <br> </div>'
 
@@ -391,14 +473,8 @@ const programTypeString = '<br> <div data-filter="select" id="Program Type" clas
         </select> \
     </div>'
 
-const organizationTypeString = '<br> <div data-filter="select" id="Organization Type" class="form"> <b> Organization Type:</b> \
-        <select class="Organization Type"> \
-            <option>Non-governmental Organization</option> \
-        </select> \
-    </div>'
-
-const requirementString = '<br><div data-filter="text" id="Requirement" class="form"> <b> Requirement: </b> \
-        <input type="text" name="Requirement" id="Requirement"> <br> </div>'
+const degreeRequirementString = '<br><div data-filter="text" id="Degree Requirement" class="form"> <b> Degree/Other Requirement: </b> \
+        <input type="text" name="Degree Requirement" id="Degree Requirement"> <br> </div>'
 
 const geoScopeString = '<br><div data-filter="text" class="Geographic Scope"> <b> Geographic Scope: </b> \
         <input type="text" name="Geographic Scope" id="Geographic Scope"> <br> </div>'
@@ -410,32 +486,33 @@ function load_syllabi(){
         institutionString + academicLevelString + instructorString + websiteString);
 }
 
+function load_details(){
+    $("#textfields").append(nameString + programTypeString + aboutString + countrySelectString + 
+        organizationString + durationString + degreeRequirementString + compensatedSelectString + websiteString);
+}
+
 function load_degree(){
     $("#textfields").append(nameString + aboutString + institutionString + countrySelectString + 
         academicLevelString + websiteString);
-}
-
-function load_details(){
-    $("#textfields").append(nameString + programTypeString + aboutString + countrySelectString + 
-        organizationString + durationString + requirementString + compensatedSelectString + websiteString);
+    bindStates();
 }
 
 function load_fellowships(){
     $("#textfields").append(nameString + aboutString + countrySelectString + organizationString + 
-        organizationTypeString + citizenshipSelectString + requirementString + compensatedSelectString + websiteString);
+        citizenshipSelectString + degreeRequirementString + compensatedSelectString + websiteString);
 }
 
 function load_internships(){
     $("#textfields").append(nameString + countrySelectString + aboutString + websiteString + organizationString + 
-        organizationTypeString + durationString + citizenshipSelectString + requirementString + compensatedSelectString);
+        citizenshipSelectString + degreeRequirementString + compensatedSelectString);
 }
 
 function load_meetings(){
-    $("#textfields").append(nameString + organizationString + aboutString + countrySelectString + websiteString);
+    $("#textfields").append(nameString + organizerString + aboutString + countrySelectString + websiteString);
 }
 
 function load_training(){
-    $("#textfields").append(nameString + organizationString + aboutString + countrySelectString + websiteString)
+    $("#textfields").append(nameString + organizerString + aboutString + countrySelectString + websiteString)
 }
 
 function load_networks(){
@@ -448,6 +525,7 @@ function load_toolkits(){
 
 function load_university(){
     $("#textfields").append(nameString + institutionString + aboutString + countrySelectString + websiteString);
+    bindStates();
 }
 
 function load_other(){

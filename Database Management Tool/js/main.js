@@ -132,11 +132,14 @@ function fillTextFields(entry) {
         } else if (datatype === "select") {
             // console.log($(this).children("select"));
             $(this).children("select").val(entry[$(this).attr("id")]);
-        } else if (datatype === "textselect") {
+        } else if (datatype === "location") {
             parts = entry[$(this).attr("id")].split(", ");
             country = parts.pop()
-            $(this).children("input").val(parts.join(", "));
             $(this).children("select").val(country);
+            if (country === "United States of America"){
+                $(this).children("select").after(stateSelectString);
+                $(this).children("select#state").val(parts.join(", "));
+            }
         } else if (datatype === "checkbox") {
             // console.log($(this).children("input"));
             // console.log(entry[$(this).attr("id")]);
@@ -208,10 +211,16 @@ function getRecord() {
         } else if (datatype === "select") {
             // console.log($(this).children("select"));
             record[$(this).attr("id")] = $(this).children("select").val();
-        } else if (datatype === "textselect") {
-            detail = $(this).children("input").val();
+        } else if (datatype === "location") {
             country = $(this).children("select").val();
-            record[$(this).attr("id")] = detail + ", " + country;
+            if (country === "United States of America") {
+                state = $(this).children("select#state").val()
+            } 
+            if (typeof state !== "undefined") {
+                record[$(this).attr("id")] = state + ", " + country;
+            } else {
+                record[$(this).attr("id")] = country;
+            }
         } else if (datatype === "checkbox") {
             // console.log($(this).children("input:checked"));
             selections = []
@@ -238,10 +247,8 @@ function disableForms() {
         } else if (datatype === "textarea") {
             $(this).children("textarea").prop('disabled', true);
         } else if (datatype === "select") {
-            // console.log($(this).children("select"));
             $(this).children("select").attr('disabled', 'disabled');
-        } else if (datatype === "textselect") {
-            $(this).children("input").prop('disabled', true);
+        } else if (datatype === "location") {
             $(this).children("select").attr('disabled', 'disabled');
         } else if (datatype === "checkbox") {
             $(this).children("input").attr('disabled', true);

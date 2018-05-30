@@ -31,7 +31,7 @@ function populate_page(profile) {
 			$("body .type").append('<b><a href="http://science-engage.org/databaseparameters.html"> ' + key + "</a>:</b> "  + resourceTypes[val] + "<br>");
 			continue;
 		}
-		if ((key === "Membership Fee" || key === "Compensation" ) && typeof(val) === "boolean") {
+		if (typeof(val) === "boolean") {
 			console.log("Working");
 			if (val) {
 				val = "Yes";

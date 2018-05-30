@@ -43,6 +43,7 @@ $(document).ready(function() {
 /*    This function's primary role is to append toString elements to each item in the dataset
         so that the results can be quickly displayed in the search table
 */
+var all_data;
 function preprocess(data) {
     // syllabi, degree programs, etc
     str = '';
@@ -58,17 +59,24 @@ function preprocess(data) {
     // console.log(processed_data);
     sorted_data = {};
     console.log(Date.now())
+    all_data = []
     for (var type in processed_data) {
         console.log(processed_data[type]);
         data_array = Object.keys(processed_data[type]).map(function (key) { return processed_data[type][key]; });
-        data_array.sort( function (a, b) {
-            return a['Name'] > b['Name']
+        all_data = all_data.concat(data_array);
+        console.log(all_data)
+        data_array.sort(function (a, b) {
+            return a['Name'] > b['Name']? 1: -1;
         });
+        console.log(data_array)
         for (i = 0; i < data_array.length; i++) {
-            // console.log(data_array[i]['Name']);
+            console.log(data_array[i]['Name']);
         }
         sorted_data[type] = data_array;
     }
+    all_data.sort(function (a, b) {
+        return a['Name'] > b['Name']? 1: -1;
+    });
     console.log(Date.now());
     return sorted_data;
     /*for (var datatype in data) {
@@ -98,18 +106,44 @@ function toString(element, key) {
     return str;
 }
 
+var current_data;
 function displayData(dataset) {
-    for (i = 0; i < dataset.length; i++) {
-        $(".data").append(dataset[i]["toString"]);
+    current_data = dataset;
+    if (current_data.length > 100) {
+        for (i = 0; i < 100; i++) {
+            $(".data").append(dataset[i]["toString"]);
+        }
+        $(".pages").empty();
+        $(".pages").append("View page: ");
+        num_pages = Math.ceil(current_data.length / 100);
+        for (n = 0; n < num_pages; n++) {
+            $(".pages").append("<span id="+n.toString()+"><a><u>" + (n+1).toString() + "</u></a></span>")
+            if (n !== num_pages - 1) {
+                $(".pages").append(", ");
+            }
+            $("span#"+n.toString()).click(function() {
+                console.log("Here");
+                $(".data").empty();
+                i = parseInt($(this).attr('id')) * 100
+                num = 0
+                while (num < 100 && i < dataset.length) {
+                    $(".data").append(dataset[i]["toString"]);
+                    i++;
+                    num++;
+                }
+
+            });
+        }
+    } else {
+        for (i = 0; i < dataset.length; i++) {
+            $(".data").append(dataset[i]["toString"]);
+        }
     }
-    $(".count u").html($("div.table-element").length);
+    $(".count u").html(current_data.length);
 }
 
 function displayAllData() {
-	for (datatype in data) {
-		dataset = data[datatype];
-		displayData(dataset);
-	}
+    displayData(all_data);
 }
 
 function filterData(dataset) {

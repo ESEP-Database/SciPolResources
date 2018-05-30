@@ -100,3 +100,7 @@ span.type {
 	text-decoration: none;
 }
 
+.pages span {
+	color: blue;
+	cursor: pointer;
+}

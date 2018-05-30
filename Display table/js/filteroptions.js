@@ -198,7 +198,7 @@ const countrySelectString = '<br> <div data-filter="select" class="Location"> <b
 		</select> \
 	</div>'
 
-const stateSelect = '<select class="state"> \
+const stateSelect = '<br> <b> Select what state to search in: </b> <br> <select class="state"> \
 						<option></option> \
 						<option>Alabama</option> \
 						<option>Alaska</option> \
@@ -318,8 +318,8 @@ function filters_degree(){
 
 function filters_details(){
 	$(".filters").append(compensatedSelectString + countrySelectString + '<br><div data-filter="checkbox" class="Program Type"> <b>Select what program type to search for:</b> <br>\
-		<input type="checkbox" id="Detail & Rotations" value="Detail & Rotations"> \
-		<label for="Detail & Rotations"> Detail & Rotations</label> \
+		<input type="checkbox" id="Details & Rotations" value="Details & Rotations"> \
+		<label for="Details & Rotations"> Details & Rotations</label> \
 		<br>   \
 		<input type="checkbox" id="Pairing Schemes" value="Pairing Schemes"> \
 		<label for="Pairing Schemes"> Pairing Schemes</label> \
