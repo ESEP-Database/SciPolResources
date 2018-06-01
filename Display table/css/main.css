@@ -105,3 +105,19 @@ span.type {
 	color: blue;
 	cursor: pointer;
 }
+
+/*Props to: https://stackoverflow.com/questions/468881/print-div-id-printarea-div-only/7532581#7532581*/
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .wcustomhtml, .wcustomhtml * {
+    visibility: visible;
+  }
+  .wcustomhtml {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
