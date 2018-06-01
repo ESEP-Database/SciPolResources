@@ -33,8 +33,7 @@ function loadData() {
 
 function preprocess(data) {
     // syllabi, degree programs, etc
-    str = '';
-       var processed_data = {};
+    var processed_data = {};
     for (var key in data) {
         item = data[key];
         if (typeof processed_data[item["Resource Type"]] === "undefined") {

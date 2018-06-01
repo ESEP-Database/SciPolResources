@@ -63,8 +63,8 @@ span.type {
 	border-radius: 5px;
 	text-decoration:none;
 	margin-top: 20px;
-	text-align: center
-;}
+	text-align: center;
+}
 
 .table-element:hover {
 	background-color: rgba(226, 248, 252, 1);
@@ -73,6 +73,7 @@ span.type {
 
 .reset {
 	padding-top: 10px;
+	font-weight:500;
 }
 
 .reset a {

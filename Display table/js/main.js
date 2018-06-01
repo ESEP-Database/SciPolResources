@@ -3,14 +3,11 @@ var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database();
 var datatype;
 var data;
+
 firebase.database().ref().once('value').then(function(snapshot) {
     data = snapshot.val()
     data = preprocess(data);
     displayAllData();
-    $("#resetFilters").click(function() {
-        console.log("Nope");
-    });
-    $("#resetPage").click(resetPage());
 });
 
 $(document).ready(function() {
@@ -19,12 +16,9 @@ $(document).ready(function() {
         $(".data").empty();
         if(this.value){
             var filters_name = "filters_" + this.value;
-            console.log(filters_name);
             window[filters_name]();
-            console.log(this.value);
             displayData(data[this.value]);
         } else {
-            console.log("Normal case");
         	displayAllData();
         }
         datatype = this.value;
@@ -56,37 +50,20 @@ function preprocess(data) {
     	}
     	processed_data[item["Resource Type"]][key] = item;
     }
-    // console.log(processed_data);
     sorted_data = {};
-    console.log(Date.now())
     all_data = []
     for (var type in processed_data) {
-        console.log(processed_data[type]);
         data_array = Object.keys(processed_data[type]).map(function (key) { return processed_data[type][key]; });
         all_data = all_data.concat(data_array);
-        console.log(all_data)
         data_array.sort(function (a, b) {
             return a['Name'] > b['Name']? 1: -1;
         });
-        console.log(data_array)
-        for (i = 0; i < data_array.length; i++) {
-            console.log(data_array[i]['Name']);
-        }
         sorted_data[type] = data_array;
     }
     all_data.sort(function (a, b) {
         return a['Name'] > b['Name']? 1: -1;
     });
-    console.log(Date.now());
     return sorted_data;
-    /*for (var datatype in data) {
-        // Individual entries
-        dataset = data[datatype];
-        for (var element in dataset) {
-            dataset[element]["toString"] = toString(dataset[element], datatype);
-        }
-    }
-    return data*/
 }
 
 /*    Given an element, give a short string that characterizes it in the search table.
@@ -102,7 +79,6 @@ function toString(element, key) {
     }
     str += info
     str +=  "</div> </a> <br> <hr>";
-    // console.log(str);
     return str;
 }
 
@@ -111,7 +87,7 @@ function displayData(dataset) {
     current_data = dataset;
     if (current_data.length > 100) {
         for (i = 0; i < 100; i++) {
-            $(".data").append(dataset[i]["toString"]);
+            $(".data").append(current_data[i]["toString"]);
         }
         $(".pages").empty();
         $(".pages").append("View page: ");
@@ -122,21 +98,20 @@ function displayData(dataset) {
                 $(".pages").append(", ");
             }
             $("span#"+n.toString()).click(function() {
-                console.log("Here");
                 $(".data").empty();
                 i = parseInt($(this).attr('id')) * 100
                 num = 0
-                while (num < 100 && i < dataset.length) {
-                    $(".data").append(dataset[i]["toString"]);
+                while (num < 100 && i < current_data.length) {
+                    $(".data").append(current_data[i]["toString"]);
                     i++;
                     num++;
                 }
-
             });
         }
     } else {
-        for (i = 0; i < dataset.length; i++) {
-            $(".data").append(dataset[i]["toString"]);
+        $(".pages").empty();
+        for (i = 0; i < current_data.length; i++) {
+            $(".data").append(current_data[i]["toString"]);
         }
     }
     $(".count u").html(current_data.length);
@@ -147,7 +122,6 @@ function displayAllData() {
 }
 
 function filterData(dataset) {
-    // console.log(dataset);
     filters = {};
     $(".filters div").each(function() {
         data_class = $(this).attr("class");
@@ -156,7 +130,6 @@ function filterData(dataset) {
             filters[data_class] = $(this).children("select").val();
             if ($(this).children("select").length === 2 && $(this).children("select").next().val() !== "") {
                 filters["_state"] = $(this).children("select").next().val();
-                console.log(filters["_state"]);
             }
         } else if (filter_type === "checkbox") {
             checks = [];
@@ -170,9 +143,6 @@ function filterData(dataset) {
             filters[data_class] = $(this).children("input[type=checkbox]").is(":checked");
         }
     });
-    console.log(filters);
-    console.log("Logging dataset");
-    console.log(dataset);
     
     filtered_indices = new Set();
 
@@ -219,7 +189,6 @@ function filterData(dataset) {
         }
     } 
 
-    console.log(filtered_indices);
     filtered_dataset = []
     for (i = 0; i < dataset.length; i++) {
         if (!filtered_indices.has(i)) {
@@ -238,9 +207,16 @@ function resetFilters() {
 }
 
 function resetPage() {
-    console.log("Resetting page");
 	$("select.main").val('');
 	$(".data").empty();
 	$(".filters").empty()
     displayAllData();
+}
+
+function printResults() {
+    // Credit to:
+    // https://stackoverflow.com/questions/1071962/how-do-i-print-part-of-a-rendered-html-page-in-javascript#1072151
+    window.frames['print_frame'].document.body.innerHTML = $(".wcustomhtml").html()
+    window.frames['print_frame'].window.focus();
+    window.frames['print_frame'].window.print();
 }
