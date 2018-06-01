@@ -1,4 +1,4 @@
-/*Props to: https://codepen.io/ibrahimjabbari/pen/ozinB*/
+/* Props to: https://codepen.io/ibrahimjabbari/pen/ozinB */
 *{font-family:sans-serif;}
 
 
@@ -68,25 +68,11 @@ span.type {
 
 .table-element:hover {
 	background-color: rgba(226, 248, 252, 1);
-	
 }
 
 .reset {
 	padding-top: 10px;
 	font-weight:500;
-}
-
-.reset a {
-	border: 0.1rem dotted grey;
-    border-radius: 10px;
-	background-color: rgba(240, 240, 240);
-    text-decoration: none;
-    color: rgba(80, 80, 80);
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.reset a:hover {
-	background-color: rgba(250, 250, 250);
 }
 
 .table-element span {
@@ -106,7 +92,7 @@ span.type {
 	cursor: pointer;
 }
 
-/*Props to: https://stackoverflow.com/questions/468881/print-div-id-printarea-div-only/7532581#7532581*/
+/* Props to: https://stackoverflow.com/questions/468881/print-div-id-printarea-div-only/7532581#7532581 */
 
 @media print {
   body * {

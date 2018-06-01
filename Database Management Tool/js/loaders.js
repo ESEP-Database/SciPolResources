@@ -1,3 +1,25 @@
+/* This page offers a variety of loader types and a general-purpose structure to make them effectively carry out their
+      task of carrying information for to be parsed. The important elements are as follows:
+            * data-filter - This must be an acceptable type to the major functions in main.js for the management tool.
+                  We have a couple of prepackaged filter types, select, boolean, checkbox, location, text, textarea,
+                  so this information tells the method how to load and parse the content.
+            * id - This must be the name of a field in the database, as the page will try to read data with this label and
+                  eventually write to the database with this label, and it goes without saying that you cannot filter on data 
+                  that's not in the database.
+            * some sort of input - There has to be a way for users to enter their information or view it and page to read the
+                  results so it can update the database.
+
+   To create a new loader, simply copy the format of 
+      <br> <div data-filter=$FILTERTYPE id=$FIELDNAME class="form"> <b> $TEXTPROMPTFORUSER </b> <br> \
+            <... (some sort of input for users to choose their results) ...>
+      </div>
+
+   The format used in the filters already listed here can be copied outright for the various filters we've already implemented,
+      and should be done for the sake of simplicity.
+*/
+
+
+// List of UN Member States
 const countrySelectString = '<br> <div data-filter="location" id="Location" class="form"> <b> Location details:</b> \
         <select class="input" id="Location"> \
             <option></option> \
@@ -197,6 +219,7 @@ const countrySelectString = '<br> <div data-filter="location" id="Location" clas
         </select> \
     </div>'
 
+// Only degree and university have state-level filtering.
 const stateSelectString = '<select id="state"> \
             <option></option> \
             <option>Alabama</option> \
@@ -252,6 +275,9 @@ const stateSelectString = '<select id="state"> \
             <option>Washington, DC</option> \
         </select>'
 
+// This function makes it so that when the country is selected to be United States of America,
+//  the state filter appears, and when the state filter changes, the dataset is refreshed. 
+//  This is in part why datatype needs to be a global variable.
 function bindStates() {
     $("div#Location").children("#Location").change(function () {
         console.log($(this).val());

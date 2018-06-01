@@ -4,31 +4,33 @@
 
     <div id="signin"> Please sign-in with an authenticated Google account to continue. </div>
 
+    <!--This is a placeholder way to allow users to choose what sort of edits they would
+        like to make. Since this is not public, its appearance was not decided to be important.-->
     <div id="header">
-    I would like to 
+        I would like to 
 
-    <select id="mode"> 
-        <option value="add">Add</option>
-        <option value="edit">Edit</option>
-        <option value="remove">Remove</option>
-    </select>
+        <select id="mode"> 
+            <option value="add">Add</option>
+            <option value="edit">Edit</option>
+            <option value="remove">Remove</option>
+        </select>
 
-    a
-
-    <select id="resource">
-        <option></option>
-        <option value="syllabi">Course Syllabus or Teaching Resource</option>
-        <option value="degree">Degree Program</option>
-        <option value="details">Detail, Pairing Scheme, or Rotation</option>
-        <option value="fellowships">Fellowship</option>
-        <option value="internships">Internship</option>
-        <option value="meetings">Meeting or Conference</option>
-        <option value="training">Training Opportunity</option>
-        <option value="networks">Professional Network</option>
-        <option value="toolkits">Toolkits and Outreach Resource</option>
-        <option value="university">University-based Student Policy Group</option>
-        <option value="other">Other Tool or Resource</option>
-    </select>
+        a
+        <!--Edit this dropdown to change the resource categories.-->
+        <select id="resource">
+            <option></option>
+            <option value="syllabi">Course Syllabus or Teaching Resource</option>
+            <option value="degree">Degree Program</option>
+            <option value="details">Detail, Pairing Scheme, or Rotation</option>
+            <option value="fellowships">Fellowship</option>
+            <option value="internships">Internship</option>
+            <option value="meetings">Meeting or Conference</option>
+            <option value="training">Training Opportunity</option>
+            <option value="networks">Professional Network</option>
+            <option value="toolkits">Toolkits and Outreach Resource</option>
+            <option value="university">University-based Student Policy Group</option>
+            <option value="other">Other Tool or Resource</option>
+        </select>
 
     </div>
 
@@ -37,27 +39,27 @@
 <div id= "form-area">
 
     <br>
-    
+    <!--This is where the list of existing resources might be loaded into-->
     <div id= "select-dropdown"> </div>
 
     <br>
-
+    <!--This is where the fields are added in. The submit button is included.-->
     <div id= "textfields"> </div>
 
 </div>
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
 <script>
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDsL6yU3lDC0QaLcdbyvM0wOpDECjpFrrw",
-    authDomain: "esep-testing.firebaseapp.com",
-    databaseURL: "https://esep-testing.firebaseio.com",
-    projectId: "esep-testing",
-    storageBucket: "esep-testing.appspot.com",
-    messagingSenderId: "455456557012"
+    apiKey: "AIzaSyDut6scum5mAR2Ftdbj3qArHEnQAI4NaQ8",
+    authDomain: "esep-database.firebaseapp.com",
+    databaseURL: "https://esep-database.firebaseio.com",
+    projectId: "esep-database",
+    storageBucket: "esep-database.appspot.com",
+    messagingSenderId: "195602369629"
   };
   firebase.initializeApp(config);
 </script>

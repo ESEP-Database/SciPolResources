@@ -1,3 +1,23 @@
+/* This page offers a variety of filter types and a general-purpose structure to make them effectively carry out their
+	task of carrying information for filterData() to parse and remove certain entries as needed. The important elements
+	of a filter are as follows:
+		* data-filter - This must be an acceptable type to filterData(). We have a couple of prepackaged filter types,
+			select, boolean, checkbox, so this information tells the method how to filter the content.
+		* class - This must be the name of a field in the database, as filterData() will look at `entry[$CLASS]` for
+			entries to see if they are appropriate. It goes without saying that you cannot filter on data that's not 
+			in the database.
+		* some sort of input - There has to be a way for users to enter how they want to filter and the filterData()
+			function to parse the results
+
+   To create a new filter, simply copy the format of 
+   	<br> <div data-filter=$FILTERTYPE class=$FIELDNAME> <b> $TEXTPROMPTFORUSER </b> <br> \
+   		<... (some sort of input for users to choose their results) ...>
+   	</div>
+
+   The format used in the filters already listed here can be copied outright for select, checkbox, and boolean style filters.
+*/
+
+
 // List of UN member states
 const countrySelectString = '<br> <div data-filter="select" class="Location"> <b> Select what country to search in:</b> <br> \
 		<select class="country"> \
@@ -198,6 +218,7 @@ const countrySelectString = '<br> <div data-filter="select" class="Location"> <b
 		</select> \
 	</div>'
 
+// Only degree and university have state-level filtering.
 const stateSelect = '<br> <b> Select what state to search in: </b> <br> <select class="state"> \
 						<option></option> \
 						<option>Alabama</option> \
@@ -253,6 +274,9 @@ const stateSelect = '<br> <b> Select what state to search in: </b> <br> <select 
 						<option>Washington, DC</option> \
 					</select>'
 
+// This function makes it so that when the country is selected to be United States of America,
+//  the state filter appears, and when the state filter changes, the dataset is refreshed. 
+//  This is in part why datatype needs to be a global variable.
 function bindStates() {
 	$(".filters div").children(".country").change(function () {
 		if ($(this).val() === "United States of America") {
@@ -296,9 +320,7 @@ const citizenshipSelectString = '<br><div data-filter="boolean" class="Citizensh
 		<label for="Citizenship Requirement"> Citizenship Requirement</label> \
 		</div>'
 
-
-function filters_syllabi(){
-	$(".filters").append(academicLevelString + '<br><div data-filter="checkbox" class="Teaching Resource Type"> <b>Select what resource type to search for:</b> <br>\
+const teachingResourceTypeString = '<br><div data-filter="checkbox" class="Teaching Resource Type"> <b>Select what resource type to search for:</b> <br>\
 		<input type="checkbox" id="Syllabus" value="Syllabus"> \
 		<label for="Syllabus"> Syllabus</label> \
 		<br>   \
@@ -308,7 +330,26 @@ function filters_syllabi(){
 		<input type="checkbox" id="Instructional video" value="Instructional video"> \
 		<label for="Instructional video"> Instructional video</label> \
 		</div> \
-		');
+		'
+
+const programTypeString = '<br><div data-filter="checkbox" class="Program Type"> <b>Select what program type to search for:</b> <br>\
+		<input type="checkbox" id="Details & Rotations" value="Details & Rotations"> \
+		<label for="Details & Rotations"> Details & Rotations</label> \
+		<br>   \
+		<input type="checkbox" id="Pairing Schemes" value="Pairing Schemes"> \
+		<label for="Pairing Schemes"> Pairing Schemes</label> \
+		</div> \
+		'
+
+const membershipFeeString = '<br><div data-filter="boolean" class="Membership Fee"> <b>Only organizations with membership fees:</b> <br>\
+		<input type="checkbox" id="Membership Fees" value="Membership Fees"> \
+		<label for="Membership Fees"> Membership Fees</label> \
+		<br>   \
+		</div> \
+		'
+
+function filters_syllabi(){
+	$(".filters").append(academicLevelString + teachingResourceTypeString);
 
 }
 function filters_degree(){
@@ -317,14 +358,7 @@ function filters_degree(){
 }
 
 function filters_details(){
-	$(".filters").append(compensatedSelectString + countrySelectString + '<br><div data-filter="checkbox" class="Program Type"> <b>Select what program type to search for:</b> <br>\
-		<input type="checkbox" id="Details & Rotations" value="Details & Rotations"> \
-		<label for="Details & Rotations"> Details & Rotations</label> \
-		<br>   \
-		<input type="checkbox" id="Pairing Schemes" value="Pairing Schemes"> \
-		<label for="Pairing Schemes"> Pairing Schemes</label> \
-		</div> \
-		');
+	$(".filters").append(compensatedSelectString + countrySelectString + programTypeString);
 
 }
 function filters_fellowships(){
@@ -344,12 +378,7 @@ function filters_training(){
 
 }
 function filters_networks(){
-	$(".filters").append('<br><div data-filter="boolean" class="Membership Fee"> <b>Only organizations with membership fees:</b> <br>\
-		<input type="checkbox" id="Membership Fees" value="Membership Fees"> \
-		<label for="Membership Fees"> Membership Fees</label> \
-		<br>   \
-		</div> \
-		');
+	$(".filters").append(membershipFeeString);
 
 }
 function filters_toolkits(){

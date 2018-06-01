@@ -1,9 +1,13 @@
+/* Current key- used to push to the correct location in the database. */
 var key;
+/* Current mode and type, used to set the page elements correctly and know which
+    function to use when submitting changes.*/
 var mode;
 var type;
-
+/* Provider used to authenticate the user and global firebase database object.*/
 var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database();
+/* Data as received from the Firebase database.*/
 var data;
 
 firebase.auth().onAuthStateChanged(function(user) {
@@ -17,6 +21,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 });
 
+/* This function does much of the setup work for the page, removing the signin message and
+    displaying the select options for the user, as well as loading the data from Firebase.*/
 function loadData() {
     $("#header").show(); // Should be before function call
     $("#signin").empty();
@@ -31,6 +37,8 @@ function loadData() {
     });
 }
 
+/* This is a similar preprocessing function to the display table, reverting to a resource-category-first
+    structure for convenience.*/
 function preprocess(data) {
     // syllabi, degree programs, etc
     var processed_data = {};
@@ -44,6 +52,7 @@ function preprocess(data) {
     return processed_data;
 }
 
+/* This function ensures that the page reacts to changes in the main editing-type select statement.*/
 function bindSelects() {
     $("#header select").on("change", function() {
         if ($("select#resource").val()) {
@@ -72,7 +81,8 @@ function loadTool(mode, type) {
 }
 
 
-/* Thus function accepts a type and creates text fields that correspond to that type.
+/* Thus function accepts a type and creates text fields that correspond to that type, using the loaders
+    defined in loaders.js. It changes the final text of the submit butter as appropriate.
 */
 function createNewTextField(mode, type) {
     var functionName = "load_" + type;
@@ -87,7 +97,8 @@ function createNewTextField(mode, type) {
     }
 }
 
-/* Displays to the viewer the existing options to edit or remove from a certain type.
+/* Displays to the user the names of all the current resources in a certain type so that the
+    user can select which one to edit or remove. .
 */
 function viewExistingOptions(mode, type) {
 
@@ -102,17 +113,16 @@ function viewExistingOptions(mode, type) {
 
     $("#select-dropdown").html(str);
 
+
     $("select#type-select").change(function() {
         key = $(this).val();
         if($(this).val()) {
             $("#textfields").empty();
             createNewTextField(mode, type);
             fillTextFields(data[type][$(this).val()]);
-            // console.log(data[type][$(this).val()]);
         }
 
         if (mode === 'remove') {
-            // console.log("Trying to remove");
             disableForms();
         }
     })
@@ -120,7 +130,9 @@ function viewExistingOptions(mode, type) {
 
 
 
-/* Given an entry, fills out text boxes with the information in the entry. */
+/* Given an entry, fills out text boxes with the information in the entry. This function
+    depends on the datatypes given in loaders.js, so as long as the format entailed there is
+    adhered to, this function automatically performs all loading operations correctly.*/
 function fillTextFields(entry) {
     $("#textfields").children("div.form").each(function() { 
         datatype = $(this).attr("data-filter");
@@ -159,9 +171,12 @@ function fillTextFields(entry) {
     })
 }
 
+/* Solicits confirmation from user, and submits the changes - pushing a new entry if the mode is add,
+    changing the current entry if the mode is edit (by key), or removing the current entry (by key) 
+    if the mode is remove. It does a brief verification that the page information hasn't been changed 
+    in an unexpected manner.*/
 function submitForm() {
     record = getRecord();
-    console.log(record);
     var result = confirm("Are you sure you want to " + mode.toLowerCase() + " this record?");
     if (!result) {
         return;
@@ -183,13 +198,15 @@ function submitForm() {
         });
     } else {
         alert("Error in processing data, please reload page and try again!");
-        return
+        return;
     }
 }
 
+/* Display an error message after failing to make a change to the database, or alert that
+    the save was successful and reset the page to the beginning mode.*/
 function processError(error) {
     if (error) {
-        alert("Data could not be saved." + error);
+        alert("Data could not be saved." + error.code);
     } else {
         alert("Data saved successfully.");
         $("#textfields").empty();
@@ -199,6 +216,10 @@ function processError(error) {
     }
 }
 
+/* Gets all information from the various datatypes in the form and merges them into a single 
+    javascript object as used in the Firebase database. This function depends on the datatypes
+    given in loaders.js, so as long as the format entailed there is adhered to, this function
+     automatically performs all loading operations correctly.*/
 function getRecord() {
     var record = {};
     $("#textfields").children("div.form").each(function() { 
@@ -238,6 +259,8 @@ function getRecord() {
     return record;
 }
 
+/* Turns off editing for all forms. This function depends on the datatypes defined in loader.js
+    so new datatypes require changes made here to ensure disabling.*/
 function disableForms() {
     $("#textfields").children("div.form").each(function() { 
         datatype = $(this).attr("data-filter");
