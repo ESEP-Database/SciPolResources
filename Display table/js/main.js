@@ -216,7 +216,8 @@ function resetPage() {
 function printResults() {
     // Credit to:
     // https://stackoverflow.com/questions/1071962/how-do-i-print-part-of-a-rendered-html-page-in-javascript#1072151
-    window.frames['print_frame'].document.body.innerHTML = $(".wcustomhtml").html()
+    $(".wcustomhtml").after('<iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>');
+    window.frames['print_frame'].document.body.innerHTML = $(".wcustomhtml").html();
     window.frames['print_frame'].window.focus();
     window.frames['print_frame'].window.print();
 }
