@@ -48,7 +48,7 @@ $(document).ready(function() {
     });
 });
 
-/*    This function's primary role is to append toString elements to each item in the dataset
+/*    This function's primary role is to append toString elements to each entry in the dataset
         so that the results can be quickly displayed in the search table, as well as to sort each
         category, so that selecting subsets of each category are automatically sorted.
       This also reverts the database structure to the category-first type.
@@ -57,13 +57,13 @@ function preprocess(data) {
     str = '';
    	var processed_data = {};
     for (var key in data) {
-    	item = data[key];
-    	item["toString"] = toString(item, key);
+    	entry = data[key];
+    	entry["toString"] = toString(entry, key);
         // Initialize the object if not yet existent.
-    	if (typeof processed_data[item["Resource Type"]] === "undefined") {
-    		processed_data[item["Resource Type"]] = {}
+    	if (typeof processed_data[entry["Resource Type"]] === "undefined") {
+    		processed_data[entry["Resource Type"]] = {}
     	}
-    	processed_data[item["Resource Type"]][key] = item;
+    	processed_data[entry["Resource Type"]][key] = entry;
     }
     sorted_data = {};
     all_data = []
@@ -161,10 +161,9 @@ function filterData(dataset) {
 
         if (filter_type === "select" && $(this).children("select").val() !== "") {
             filters[data_class] = $(this).children("select").val();
-
-            if ($(this).children("select").length === 2 && $(this).children("select").next().val() !== "") {
+            if ($(this).children("select").length === 2 && $(this).children("select").eq(1).val() !== "") {
                 // The only filter type with two selects is the Location, so the second select is the state.
-                filters["_state"] = $(this).children("select").next().val();
+                filters["_state"] = $(this).children("select").eq(1).val();
             }
         } else if (filter_type === "checkbox") {
             checks = [];
@@ -187,7 +186,7 @@ function filterData(dataset) {
         if (label === "_state") {
             for (i = 0; i < dataset.length; i++) {
                 // As long as the name has the appropriate label within it.
-                if (typeof dataset[i][label] === 'undefined' || dataset[i]['Location'].indexOf(filters[label]) === -1) {
+                if (typeof dataset[i]['Location'] === 'undefined' || dataset[i]['Location'].indexOf(filters[label]) === -1) {
                     filtered_indices.add(i);
                 }
             }
@@ -227,6 +226,7 @@ function filterData(dataset) {
             }
         }
     } 
+
     // Copy results into new array
     filtered_dataset = []
     for (i = 0; i < dataset.length; i++) {
